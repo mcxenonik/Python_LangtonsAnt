@@ -1,0 +1,131 @@
+# -*- coding: utf-8 -*-
+
+################################################################################
+## Form generated from reading UI file 'app_gui.ui'
+##
+## Created by: Qt User Interface Compiler version 5.15.2
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        if not MainWindow.objectName():
+            MainWindow.setObjectName(u"MainWindow")
+        MainWindow.resize(378, 424)
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.groupBox_2 = QGroupBox(self.centralwidget)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.groupBox_2.setGeometry(QRect(10, 170, 361, 91))
+        self.checkBox = QCheckBox(self.groupBox_2)
+        self.checkBox.setObjectName(u"checkBox")
+        self.checkBox.setGeometry(QRect(10, 20, 121, 17))
+        self.radioButton_4 = QRadioButton(self.groupBox_2)
+        self.radioButton_4.setObjectName(u"radioButton_4")
+        self.radioButton_4.setGeometry(QRect(30, 40, 101, 17))
+        self.radioButton_5 = QRadioButton(self.groupBox_2)
+        self.radioButton_5.setObjectName(u"radioButton_5")
+        self.radioButton_5.setGeometry(QRect(30, 60, 51, 17))
+        self.lineEdit_5 = QLineEdit(self.groupBox_2)
+        self.lineEdit_5.setObjectName(u"lineEdit_5")
+        self.lineEdit_5.setGeometry(QRect(80, 60, 31, 20))
+        self.label_5 = QLabel(self.groupBox_2)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setGeometry(QRect(120, 60, 51, 16))
+        self.groupBox = QGroupBox(self.centralwidget)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setGeometry(QRect(10, 0, 361, 171))
+        self.pushButton_2 = QPushButton(self.groupBox)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setGeometry(QRect(260, 130, 75, 23))
+        self.radioButton_3 = QRadioButton(self.groupBox)
+        self.radioButton_3.setObjectName(u"radioButton_3")
+        self.radioButton_3.setGeometry(QRect(10, 130, 91, 17))
+        self.radioButton_2 = QRadioButton(self.groupBox)
+        self.radioButton_2.setObjectName(u"radioButton_2")
+        self.radioButton_2.setGeometry(QRect(10, 80, 91, 17))
+        self.radioButton = QRadioButton(self.groupBox)
+        self.radioButton.setObjectName(u"radioButton")
+        self.radioButton.setGeometry(QRect(10, 30, 91, 17))
+        self.radioButton.setChecked(True)
+        self.lineEdit_2 = QLineEdit(self.groupBox)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_2.setGeometry(QRect(230, 30, 113, 20))
+        self.lineEdit_4 = QLineEdit(self.groupBox)
+        self.lineEdit_4.setObjectName(u"lineEdit_4")
+        self.lineEdit_4.setGeometry(QRect(110, 130, 113, 20))
+        self.lineEdit = QLineEdit(self.groupBox)
+        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit.setGeometry(QRect(110, 30, 113, 20))
+        self.lineEdit.setInputMethodHints(Qt.ImhNone)
+        self.lineEdit_3 = QLineEdit(self.groupBox)
+        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.lineEdit_3.setGeometry(QRect(110, 80, 113, 20))
+        self.label_2 = QLabel(self.groupBox)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(270, 10, 47, 13))
+        self.label_3 = QLabel(self.groupBox)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(130, 60, 81, 16))
+        self.label = QLabel(self.groupBox)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(150, 10, 47, 13))
+        self.label_4 = QLabel(self.groupBox)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(110, 110, 121, 16))
+        self.groupBox_3 = QGroupBox(self.centralwidget)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setGeometry(QRect(10, 260, 361, 121))
+        self.label_6 = QLabel(self.groupBox_3)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setGeometry(QRect(10, 20, 101, 16))
+        self.lineEdit_6 = QLineEdit(self.groupBox_3)
+        self.lineEdit_6.setObjectName(u"lineEdit_6")
+        self.lineEdit_6.setGeometry(QRect(10, 40, 101, 20))
+        self.pushButton = QPushButton(self.groupBox_3)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(10, 80, 75, 23))
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.groupBox_3.raise_()
+        self.groupBox_2.raise_()
+        self.groupBox.raise_()
+        self.menubar = QMenuBar(MainWindow)
+        self.menubar.setObjectName(u"menubar")
+        self.menubar.setGeometry(QRect(0, 0, 378, 21))
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QStatusBar(MainWindow)
+        self.statusbar.setObjectName(u"statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+
+        QMetaObject.connectSlotsByName(MainWindow)
+    # setupUi
+
+    def retranslateUi(self, MainWindow):
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Output", None))
+        self.checkBox.setText(QCoreApplication.translate("MainWindow", u"Save images to files", None))
+        self.radioButton_4.setText(QCoreApplication.translate("MainWindow", u"All iterations", None))
+        self.radioButton_5.setText(QCoreApplication.translate("MainWindow", u"Every ", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"iterations", None))
+        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Image", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Show image", None))
+        self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"Random image", None))
+        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Image from file", None))
+        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"White image", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Height", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Path to image", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Width", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Probability (Black pixels)", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Algorithm", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Number of iterations", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"RUN", None))
+    # retranslateUi
+
