@@ -20,23 +20,57 @@ class LangtonsAntWindow(QMainWindow):
         self.ui.imageFromFileRB.clicked.connect(self._imageFromFileClick)
         self.ui.randomImageRB.clicked.connect(self._randomImageClick)
 
+        self.ui.saveImageToFileCB.clicked.connect(self._saveImageToFileClick)
+        self.ui.allIterationsRB.clicked.connect(self._allIterationsClick)
+        self.ui.everyNIterationsRB.clicked.connect(self._everyNIterationsClick)
+
+        self.ui.showImagePB.clicked.connect(self._showImageClick)
+        self.ui.runPB.clicked.connect(self._runClick)
+
     def _whiteImageClick(self):
-        self.ui.widthLE.setEnabled(True)
-        self.ui.heightLE.setEnabled(True)
-        self.ui.pathLE.setEnabled(False)
-        self.ui.probabilityLE.setEnabled(False)
+        self._setImageGroupEnabled((True, True, False, False))
 
     def _imageFromFileClick(self):
-        self.ui.widthLE.setEnabled(False)
-        self.ui.heightLE.setEnabled(False)
-        self.ui.pathLE.setEnabled(True)
-        self.ui.probabilityLE.setEnabled(False)
+        self._setImageGroupEnabled((False, False, True, False))
 
     def _randomImageClick(self):
-        self.ui.widthLE.setEnabled(False)
-        self.ui.heightLE.setEnabled(False)
-        self.ui.pathLE.setEnabled(False)
-        self.ui.probabilityLE.setEnabled(True)
+        self._setImageGroupEnabled((False, False, False, True))
+
+    def _setImageGroupEnabled(self, isEnabled):
+        self.ui.widthLE.setEnabled(isEnabled[0])
+        self.ui.heightLE.setEnabled(isEnabled[1])
+        self.ui.pathLE.setEnabled(isEnabled[2])
+        self.ui.probabilityLE.setEnabled(isEnabled[3])
+
+    def _saveImageToFileClick(self):
+        if(self.ui.saveImageToFileCB.isChecked() is True):
+            self._setOutputGroupEnabled(True)
+            if(self.ui.everyNIterationsRB.isChecked() is True):
+                self.ui.saveIterationsLE.setEnabled(True)
+        else:
+            self._setOutputGroupEnabled(False)
+            self.ui.saveIterationsLE.setEnabled(False)
+
+    def _setOutputGroupEnabled(self, isEnabled):
+        self.ui.allIterationsRB.setEnabled(isEnabled)
+        self.ui.everyNIterationsRB.setEnabled(isEnabled)
+
+    def _allIterationsClick(self):
+        self.ui.saveIterationsLE.setEnabled(False)
+
+    def _everyNIterationsClick(self):
+        self.ui.saveIterationsLE.setEnabled(True)
+
+    def _showImageClick(self):
+        if(self.ui.whiteImageRB.isChecked() is True):
+            pass
+        elif(self.ui.imageFromFileRB.isChecked() is True):
+            pass
+        elif(self.ui.randomImageRB.isChecked() is True):
+            pass
+
+    def _runClick(self):
+        pass
 
 
 def guiMain(args):

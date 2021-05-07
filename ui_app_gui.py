@@ -47,7 +47,7 @@ class Ui_MainWindow(object):
         self.groupBox.setGeometry(QRect(10, 0, 361, 171))
         self.showImagePB = QPushButton(self.groupBox)
         self.showImagePB.setObjectName(u"showImagePB")
-        self.showImagePB.setEnabled(False)
+        self.showImagePB.setEnabled(True)
         self.showImagePB.setGeometry(QRect(260, 130, 75, 23))
         self.randomImageRB = QRadioButton(self.groupBox)
         self.randomImageRB.setObjectName(u"randomImageRB")
