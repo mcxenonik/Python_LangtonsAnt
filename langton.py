@@ -29,13 +29,13 @@ def generate_random_image(height, width, probabilty):
     return image
 
 
-def ant_algorithm(image):
+def ant_algorithm(image, number_of_iterations):
     height = numpy.size(image, 0)
     width = numpy.size(image, 1)
 
     ant1 = Ant([int(height / 2), int(width / 2)])
 
-    for i in range(12000):
+    for i in range(number_of_iterations):
         if(image[ant1.get_position()] == 255):
             image = ant1.change_color(image)
             ant1.move_left()
@@ -53,4 +53,4 @@ def ant_algorithm(image):
 # img = read_image_from_file('test5.png')
 # img = generate_random_image(250, 250, 0.1)
 
-# ant_algorithm(img)
+# ant_algorithm(img, 12000)

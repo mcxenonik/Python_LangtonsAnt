@@ -1,10 +1,9 @@
 from PySide2.QtWidgets import QApplication, QMainWindow
-# from PySide2.QtWidgets import QHBoxLayout, QVBoxLayout
-# from PySide2.QtWidgets importQWidget, QLineEdit, QPushButton
-
 import sys
+import cv2
 
 from ui_app_gui import Ui_MainWindow
+import langton
 
 
 class LangtonsAntWindow(QMainWindow):
@@ -13,6 +12,7 @@ class LangtonsAntWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self._image = []
         self._mainApplication()
 
     def _mainApplication(self):
@@ -34,7 +34,7 @@ class LangtonsAntWindow(QMainWindow):
         self._setImageGroupEnabled((False, False, True, False))
 
     def _randomImageClick(self):
-        self._setImageGroupEnabled((False, False, False, True))
+        self._setImageGroupEnabled((True, True, False, True))
 
     def _setImageGroupEnabled(self, isEnabled):
         self.ui.widthLE.setEnabled(isEnabled[0])
@@ -62,15 +62,29 @@ class LangtonsAntWindow(QMainWindow):
         self.ui.saveIterationsLE.setEnabled(True)
 
     def _showImageClick(self):
+        self.ui.runPB.setEnabled(True)
         if(self.ui.whiteImageRB.isChecked() is True):
-            pass
+            height = int(self.ui.heightLE.text())
+            width = int(self.ui.widthLE.text())
+            self._image = langton.generate_white_image(height, width)
+            cv2.imshow('Image', self._image)
+            cv2.waitKey(0)
         elif(self.ui.imageFromFileRB.isChecked() is True):
-            pass
+            path = str(self.ui.pathLE.text())
+            self._image = langton.read_image_from_file(path)
+            cv2.imshow('Image', self._image)
+            cv2.waitKey(0)
         elif(self.ui.randomImageRB.isChecked() is True):
-            pass
+            height = int(self.ui.heightLE.text())
+            width = int(self.ui.widthLE.text())
+            proba = float(self.ui.probabilityLE.text())
+            self._image = langton.generate_random_image(height, width, proba)
+            cv2.imshow('Image', self._image)
+            cv2.waitKey(0)
 
     def _runClick(self):
-        pass
+        iterations = int(self.ui.numberOfIterationsLE.text())
+        langton.ant_algorithm(self._image, iterations)
 
 
 def guiMain(args):
