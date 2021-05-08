@@ -1,10 +1,13 @@
-def validate_image_size(image_size):
-    if(image_size[0] not in list(range(1001))):
-        if(image_size[1] not in list(range(1001))):
-            return (False, 'height', 'width')
-        return (False, 'height')
-    elif(image_size[1] not in list(range(1001))):
-        return (False, 'width')
+def validate_image_height(image_height):
+    if(image_height not in list(range(1001))):
+        return False
+    else:
+        return True
+
+
+def validate_image_width(image_width):
+    if(image_width not in list(range(1001))):
+        return False
     else:
         return True
 
