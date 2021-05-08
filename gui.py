@@ -4,6 +4,7 @@ import cv2
 
 from ui_app_gui import Ui_MainWindow
 import langton
+import input_validator
 
 
 class LangtonsAntWindow(QMainWindow):
@@ -24,6 +25,7 @@ class LangtonsAntWindow(QMainWindow):
         self.ui.allIterationsRB.clicked.connect(self._allIterationsClick)
         self.ui.everyNIterationsRB.clicked.connect(self._everyNIterationsClick)
 
+        self.ui.generateImagePB.clicked.connect(self._generateImageClik)
         self.ui.showImagePB.clicked.connect(self._showImageClick)
         self.ui.runPB.clicked.connect(self._runClick)
 
@@ -61,26 +63,45 @@ class LangtonsAntWindow(QMainWindow):
     def _everyNIterationsClick(self):
         self.ui.saveIterationsLE.setEnabled(True)
 
-    def _showImageClick(self):
-        self.ui.runPB.setEnabled(True)
+    def _generateImageClik(self):
         if(self.ui.whiteImageRB.isChecked() is True):
             height = int(self.ui.heightLE.text())
             width = int(self.ui.widthLE.text())
-            self._image = langton.generate_white_image(height, width)
-            cv2.imshow('Image', self._image)
-            cv2.waitKey(0)
+
+            valid_result = input_validator.validate_image_size((height, width))
+
+            if(valid_result is True):
+                self._image = langton.generate_white_image(height, width)
+                self._setLineEditBackground(self.ui.heightLE, 'white')
+                self._setLineEditBackground(self.ui.widthLE, 'white')
+            elif(valid_result == (False, 'height')):
+                self._setLineEditBackground(self.ui.heightLE, 'red')
+            elif(valid_result == (False, 'width')):
+                self._setLineEditBackground(self.ui.widthLE, 'red')
+            elif(valid_result == (False, 'height', 'width')):
+                self._setLineEditBackground(self.ui.heightLE, 'red')
+                self._setLineEditBackground(self.ui.widthLE, 'red')
+
         elif(self.ui.imageFromFileRB.isChecked() is True):
             path = str(self.ui.pathLE.text())
             self._image = langton.read_image_from_file(path)
-            cv2.imshow('Image', self._image)
-            cv2.waitKey(0)
+
         elif(self.ui.randomImageRB.isChecked() is True):
             height = int(self.ui.heightLE.text())
             width = int(self.ui.widthLE.text())
             proba = float(self.ui.probabilityLE.text())
             self._image = langton.generate_random_image(height, width, proba)
-            cv2.imshow('Image', self._image)
-            cv2.waitKey(0)
+
+        self.ui.runPB.setEnabled(True)
+        self.ui.showImagePB.setEnabled(True)
+
+    def _setLineEditBackground(self, lineEdit, color):
+        setting = f'QLineEdit{{background : {color};}}'
+        lineEdit.setStyleSheet(setting)
+
+    def _showImageClick(self):
+        cv2.imshow('Image', self._image)
+        cv2.waitKey(0)
 
     def _runClick(self):
         iterations = int(self.ui.numberOfIterationsLE.text())
