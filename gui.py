@@ -17,7 +17,7 @@ class LangtonsAntWindow(QMainWindow):
         self._valid_width = False
         self._valid_height = False
         self._valid_probability = False
-        self._valid_numberOfIterations = False
+        self._valid_numOfIter = False
 
         self._connectWithGUI()
 
@@ -38,10 +38,10 @@ class LangtonsAntWindow(QMainWindow):
         self.ui.heightLE.editingFinished.connect(self._heightImageEdit)
         self.ui.probabilityLE.editingFinished.connect(self._probabilityEdit)
 
-        self.ui.numberOfIterationsLE.editingFinished.connect(self._numberOfIterationsEdit)
+        self.ui.numOfIterLE.editingFinished.connect(self._numOfIterEdit)
 
     def _widthImageEdit(self):
-        width = int(self.ui.widthLE.text())
+        width = self.ui.widthLE.text()
 
         self._valid_width = input_validator.validate_image_width(width)
 
@@ -51,7 +51,7 @@ class LangtonsAntWindow(QMainWindow):
             self._setLineEditBackground(self.ui.widthLE, 'red')
 
     def _heightImageEdit(self):
-        height = int(self.ui.heightLE.text())
+        height = self.ui.heightLE.text()
 
         self._valid_height = input_validator.validate_image_height(height)
 
@@ -61,7 +61,7 @@ class LangtonsAntWindow(QMainWindow):
             self._setLineEditBackground(self.ui.heightLE, 'red')
 
     def _probabilityEdit(self):
-        pro = float(self.ui.probabilityLE.text())
+        pro = self.ui.probabilityLE.text()
 
         self._valid_probability = input_validator.validate_probabilty(pro)
 
@@ -70,15 +70,15 @@ class LangtonsAntWindow(QMainWindow):
         else:
             self._setLineEditBackground(self.ui.probabilityLE, 'red')
 
-    def _numberOfIterationsEdit(self):
-        numOfIter = int(self.ui.numberOfIterationsLE.text())
+    def _numOfIterEdit(self):
+        numOfIter = self.ui.numOfIterLE.text()
 
-        self._valid_numberOfIterations = input_validator.validate_number_of_iterations(numOfIter)
+        self._valid_numOfIter = input_validator.validate_num_of_iter(numOfIter)
 
-        if(self._valid_numberOfIterations is True):
-            self._setLineEditBackground(self.ui.numberOfIterationsLE, 'white')
+        if(self._valid_numOfIter is True):
+            self._setLineEditBackground(self.ui.numOfIterLE, 'white')
         else:
-            self._setLineEditBackground(self.ui.numberOfIterationsLE, 'red')
+            self._setLineEditBackground(self.ui.numOfIterLE, 'red')
 
     def _setLineEditBackground(self, lineEdit, color):
         setting = f'QLineEdit{{background : {color};}}'
@@ -128,9 +128,15 @@ class LangtonsAntWindow(QMainWindow):
                 self._image = langton.generate_white_image(height, width)
                 print('Image generated')
 
+                self.ui.runPB.setEnabled(True)
+                self.ui.showImagePB.setEnabled(True)
+
         elif(self.ui.imageFromFileRB.isChecked() is True):
             path = str(self.ui.pathLE.text())
             self._image = langton.read_image_from_file(path)
+
+            self.ui.runPB.setEnabled(True)
+            self.ui.showImagePB.setEnabled(True)
 
         elif(self.ui.randomImageRB.isChecked() is True):
             if(self._valid_height is False or self._valid_width is False
@@ -143,16 +149,21 @@ class LangtonsAntWindow(QMainWindow):
                 self._image = langton.generate_random_image(height, width, pro)
                 print('Image generated')
 
-        self.ui.runPB.setEnabled(True)
-        self.ui.showImagePB.setEnabled(True)
+                self.ui.runPB.setEnabled(True)
+                self.ui.showImagePB.setEnabled(True)
 
     def _showImageClick(self):
         cv2.imshow('Image', self._image)
+        print('Show image')
         cv2.waitKey(0)
 
     def _runClick(self):
-        iterations = int(self.ui.numberOfIterationsLE.text())
-        langton.ant_algorithm(self._image, iterations)
+        if(self._valid_numOfIter is False):
+            print('Invalid input data')
+        else:
+            iterations = int(self.ui.numOfIterLE.text())
+            langton.ant_algorithm(self._image, iterations)
+            print('RUN')
 
 
 def guiMain(args):
