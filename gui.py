@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QApplication, QMainWindow
+from PySide2.QtWidgets import QApplication, QFileDialog, QMainWindow
 import sys
 import cv2
 
@@ -26,19 +26,23 @@ class LangtonsAntWindow(QMainWindow):
         self.ui.allIterationsRB.clicked.connect(self._allIterationsClick)
         self.ui.everyNIterationsRB.clicked.connect(self._everyNIterationsClick)
 
-        self.ui.generateImagePB.clicked.connect(self._generateImageClik)
+        self.ui.selectFilePB.clicked.connect(self._selectFileClick)
+        self.ui.generateImagePB.clicked.connect(self._generateImageClick)
         self.ui.resetPB.clicked.connect(self._resetClick)
         self.ui.runPB.clicked.connect(self._runClick)
 
     def _whiteImageClick(self):
-        self._setImageGroupEnabled((True, True, False, False))
+        self._setImageGroupEnabled((True, True, False, False, False, True))
+        self._checkIfRunButtonCanBeEnabled()
 
     def _imageFromFileClick(self):
-        self._setImageGroupEnabled((False, False, True, False))
+        self._setImageGroupEnabled((False, False, True, False, True, False))
+        self._checkIfPathisEmpty()
 
     def _randomImageClick(self):
-        self._setImageGroupEnabled((True, True, False, True))
-
+        self._setImageGroupEnabled((True, True, False, True, False, True))
+        self._checkIfRunButtonCanBeEnabled()
+ 
     def _saveImageToFileClick(self):
         if(self.ui.saveImageToFileCB.isChecked()):
             self._setOutputGroupEnabled(True)
@@ -54,7 +58,11 @@ class LangtonsAntWindow(QMainWindow):
     def _everyNIterationsClick(self):
         self.ui.saveItersSB.setEnabled(True)
 
-    def _generateImageClik(self):
+    def _selectFileClick(self):
+        self.ui.pathLE.setText(QFileDialog.getOpenFileName()[0])
+        self._checkIfPathisEmpty()
+
+    def _generateImageClick(self):
         print('Image generated')
 
         if(self.ui.whiteImageRB.isChecked()):
@@ -63,14 +71,10 @@ class LangtonsAntWindow(QMainWindow):
 
             self._image = langton.generate_white_image(height, width)
 
-            self._setPushButtonsEnabled()
-
         elif(self.ui.imageFromFileRB.isChecked()):
-            path = str(self.ui.pathLE.text())
+            path = self.ui.pathLE.text()
 
             self._image = langton.read_image_from_file(path)
-
-            self._setPushButtonsEnabled()
 
         elif(self.ui.randomImageRB.isChecked()):
             height = self.ui.heightSB.value()
@@ -79,7 +83,7 @@ class LangtonsAntWindow(QMainWindow):
 
             self._image = langton.generate_random_image(height, width, pro)
 
-            self._setPushButtonsEnabled()
+        self._setPushButtonsEnabled()
 
         self._image_reset = self._image.copy()
 
@@ -101,7 +105,7 @@ class LangtonsAntWindow(QMainWindow):
         allIters = self.ui.allIterationsRB.isChecked()
         everyNIters = self.ui.everyNIterationsRB.isChecked()
 
-        iterations = int(self.ui.numOfItersSB.text())
+        iterations = self.ui.numOfItersSB.value()
 
         if(isSave and allIters):
             langton.ant_algorithm(self._image, iterations, isSave)
@@ -120,10 +124,25 @@ class LangtonsAntWindow(QMainWindow):
         self.ui.heightSB.setEnabled(isEnabled[1])
         self.ui.pathLE.setEnabled(isEnabled[2])
         self.ui.probabilitySB.setEnabled(isEnabled[3])
+        self.ui.selectFilePB.setEnabled(isEnabled[4])
+        self.ui.generateImagePB.setEnabled(isEnabled[5])
 
     def _setOutputGroupEnabled(self, isEnabled):
         self.ui.allIterationsRB.setEnabled(isEnabled)
         self.ui.everyNIterationsRB.setEnabled(isEnabled)
+
+    def _checkIfPathisEmpty(self):
+        if(self.ui.pathLE.text() == ''):
+            self.ui.runPB.setEnabled(False)
+            self.ui.generateImagePB.setEnabled(False)
+        else:
+            self.ui.generateImagePB.setEnabled(True)
+
+    def _checkIfRunButtonCanBeEnabled(self):
+        if(len(self._image) != 0):
+            self.ui.runPB.setEnabled(True)
+        else:
+            self.ui.runPB.setEnabled(False)
 
 
 def guiMain(args):
