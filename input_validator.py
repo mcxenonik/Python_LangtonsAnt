@@ -27,7 +27,7 @@ def validate_probabilty(proba):
 
 
 def validate_save_iterations(save_iter):
-    if(not(save_iter.isnumeric)
+    if(not(save_iter.isnumeric())
        or int(save_iter) not in list(range(1, 1001))):
         return False
     else:

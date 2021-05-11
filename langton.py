@@ -29,24 +29,30 @@ def generate_random_image(height, width, probabilty):
     return image
 
 
-def ant_algorithm(image, number_of_iterations):
+def save_image_to_file(image, iter):
+    path = f'out/out_{iter}.png'
+    cv2.imwrite(path, image)
+
+
+def ant_algorithm(image, number_of_iterations, isSave=False, saveIter=1):
     height = numpy.size(image, 0)
     width = numpy.size(image, 1)
 
-    ant1 = Ant([int(height / 2), int(width / 2)])
+    stefan = Ant([int(height / 2), int(width / 2)])
 
-    for i in range(number_of_iterations):
-        if(image[ant1.get_position()] == 255):
-            image = ant1.change_color(image)
-            ant1.move_left()
-        elif(image[ant1.get_position()] == 0):
-            image = ant1.change_color(image)
-            ant1.move_right()
+    for i in range(1, number_of_iterations + 1):
+        if(image[stefan.get_position()] == 255):
+            image = stefan.change_color(image)
+            stefan.move_left()
+        elif(image[stefan.get_position()] == 0):
+            image = stefan.change_color(image)
+            stefan.move_right()
+
+        if(isSave and (i % saveIter == 0 or i in [1, number_of_iterations])):
+            save_image_to_file(image, i)
 
     cv2.imshow('Image', image)
     cv2.waitKey(0)
-
-    # cv2.imwrite('test2.jpg', im)
 
 
 # img = generate_white_image(250, 250)

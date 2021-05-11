@@ -18,6 +18,7 @@ class LangtonsAntWindow(QMainWindow):
         self._valid_height = False
         self._valid_probability = False
         self._valid_numOfIter = False
+        self._valid_saveIters = False
 
         self._connectWithGUI()
 
@@ -37,6 +38,7 @@ class LangtonsAntWindow(QMainWindow):
         self.ui.widthLE.editingFinished.connect(self._widthImageEdit)
         self.ui.heightLE.editingFinished.connect(self._heightImageEdit)
         self.ui.probabilityLE.editingFinished.connect(self._probabilityEdit)
+        self.ui.saveIterationsLE.editingFinished.connect(self._saveItersEdit)
 
         self.ui.numOfIterLE.editingFinished.connect(self._numOfIterEdit)
 
@@ -69,6 +71,16 @@ class LangtonsAntWindow(QMainWindow):
             self._setLineEditBackground(self.ui.probabilityLE, 'white')
         else:
             self._setLineEditBackground(self.ui.probabilityLE, 'red')
+
+    def _saveItersEdit(self):
+        saveIters = self.ui.saveIterationsLE.text()
+
+        self._valid_saveIters = input_validator.validate_save_iterations(saveIters)
+
+        if(self._valid_saveIters is True):
+            self._setLineEditBackground(self.ui.saveIterationsLE, 'white')
+        else:
+            self._setLineEditBackground(self.ui.saveIterationsLE, 'red')
 
     def _numOfIterEdit(self):
         numOfIter = self.ui.numOfIterLE.text()
@@ -158,12 +170,26 @@ class LangtonsAntWindow(QMainWindow):
         cv2.waitKey(0)
 
     def _runClick(self):
-        if(self._valid_numOfIter is False):
+        isSave = self.ui.saveImageToFileCB.isChecked()
+        everyNIters = self.ui.everyNIterationsRB.isChecked()
+
+        if(self._valid_numOfIter is False
+           or (isSave and everyNIters and self._valid_saveIters is False)):
             print('Invalid input data')
         else:
-            iterations = int(self.ui.numOfIterLE.text())
-            langton.ant_algorithm(self._image, iterations)
             print('RUN')
+
+            iterations = int(self.ui.numOfIterLE.text())
+
+            allIters = self.ui.allIterationsRB.isChecked()
+
+            if(isSave and allIters):
+                langton.ant_algorithm(self._image, iterations, isSave)
+            elif(isSave and everyNIters):
+                saveIters = int(self.ui.saveIterationsLE.text())
+                langton.ant_algorithm(self._image, iterations, isSave, saveIters)
+            else:
+                langton.ant_algorithm(self._image, iterations)
 
 
 def guiMain(args):
