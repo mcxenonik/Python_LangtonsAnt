@@ -34,6 +34,7 @@ class LangtonsAntWindow(QMainWindow):
         self.ui.generateImagePB.clicked.connect(self._generateImageClik)
         self.ui.showImagePB.clicked.connect(self._showImageClick)
         self.ui.runPB.clicked.connect(self._runClick)
+        self.ui.resetPB.clicked.connect(self._resetClick)
 
         self.ui.widthLE.editingFinished.connect(self._widthImageEdit)
         self.ui.heightLE.editingFinished.connect(self._heightImageEdit)
@@ -140,6 +141,7 @@ class LangtonsAntWindow(QMainWindow):
                 self._image = langton.generate_white_image(height, width)
                 print('Image generated')
 
+                self.ui.resetPB.setEnabled(True)
                 self.ui.runPB.setEnabled(True)
                 self.ui.showImagePB.setEnabled(True)
 
@@ -147,6 +149,7 @@ class LangtonsAntWindow(QMainWindow):
             path = str(self.ui.pathLE.text())
             self._image = langton.read_image_from_file(path)
 
+            self.ui.resetPB.setEnabled(True)
             self.ui.runPB.setEnabled(True)
             self.ui.showImagePB.setEnabled(True)
 
@@ -161,6 +164,7 @@ class LangtonsAntWindow(QMainWindow):
                 self._image = langton.generate_random_image(height, width, pro)
                 print('Image generated')
 
+                self.ui.resetPB.setEnabled(True)
                 self.ui.runPB.setEnabled(True)
                 self.ui.showImagePB.setEnabled(True)
 
@@ -168,6 +172,9 @@ class LangtonsAntWindow(QMainWindow):
         cv2.imshow('Image', self._image)
         print('Show image')
         cv2.waitKey(0)
+
+    def _resetClick(self):
+        pass
 
     def _runClick(self):
         isSave = self.ui.saveImageToFileCB.isChecked()
