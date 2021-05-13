@@ -38,7 +38,7 @@ def ant_algorithm(image, number_of_iterations, isSave=False, saveIter=1):
     height = numpy.size(image, 0)
     width = numpy.size(image, 1)
 
-    stefan = Ant([int(height / 2), int(width / 2)])
+    stefan = Ant(height, width)
 
     for i in range(1, number_of_iterations + 1):
         if(image[stefan.get_position()] == 255):

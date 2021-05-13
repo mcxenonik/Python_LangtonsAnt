@@ -42,7 +42,7 @@ class LangtonsAntWindow(QMainWindow):
     def _randomImageClick(self):
         self._setImageGroupEnabled((True, True, False, True, False, True))
         self._checkIfRunButtonCanBeEnabled()
- 
+
     def _saveImageToFileClick(self):
         if(self.ui.saveImageToFileCB.isChecked()):
             self._setOutputGroupEnabled(True)
