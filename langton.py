@@ -41,6 +41,27 @@ def ant_algorithm(image, number_of_iterations, isSave=False, saveIter=1):
     stefan = Ant(height, width)
 
     for i in range(1, number_of_iterations + 1):
+        y = stefan.get_position()[0]
+        x = stefan.get_position()[1]
+
+        while(y >= height or x >= width or y < 0 or x < 0):
+            y = stefan.get_position()[0]
+            x = stefan.get_position()[1]
+            los = random.randint(1, 4)
+
+            if(los == 1):
+                y += 1
+            elif(los == 2):
+                x += 1
+            elif(los == 3):
+                y -= 1
+            else:
+                x -= 1
+    
+        stefan.set_position_x(x)
+        stefan.set_position_y(y)   
+        
+    
         if(image[stefan.get_position()] == 255):
             image = stefan.change_color(image)
             stefan.move_left()
@@ -55,8 +76,8 @@ def ant_algorithm(image, number_of_iterations, isSave=False, saveIter=1):
     cv2.waitKey(0)
 
 
-# img = generate_white_image(250, 250)
+# img = generate_white_image(20, 20)
 # img = read_image_from_file('test5.png')
 # img = generate_random_image(250, 250, 0.1)
 
-# ant_algorithm(img, 12000)
+# ant_algorithm(img, 100000)

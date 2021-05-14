@@ -39,6 +39,12 @@ class Ant():
         x = self._position_x
         return (y, x)
 
+    def set_position_x(self, x):
+        self._position_x = x
+
+    def set_position_y(self, y):
+        self._position_y = y
+
     def change_color(self, board):
         y = self._position_y
         x = self._position_x
