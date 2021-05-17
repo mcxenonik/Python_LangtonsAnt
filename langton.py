@@ -42,11 +42,13 @@ def ant_algorithm(image, number_of_iterations, isSave=False, saveIter=1):
 
     for i in range(1, number_of_iterations + 1):
         if(image[stefan.get_position()] == 255):
+            stefan.rotate(-90)
             image = stefan.change_color(image)
-            stefan.move_left()
+            stefan.move()
         elif(image[stefan.get_position()] == 0):
+            stefan.rotate(90)
             image = stefan.change_color(image)
-            stefan.move_right()
+            stefan.move()
 
         if(isSave and (i % saveIter == 0 or i in [1, number_of_iterations])):
             save_image_to_file(image, i)
@@ -55,8 +57,8 @@ def ant_algorithm(image, number_of_iterations, isSave=False, saveIter=1):
     cv2.waitKey(0)
 
 
-# img = generate_white_image(250, 250)
+# img = generate_white_image(5, 5)
 # img = read_image_from_file('test5.png')
 # img = generate_random_image(250, 250, 0.1)
 
-# ant_algorithm(img, 12000)
+# ant_algorithm(img, 100)
