@@ -1,5 +1,4 @@
 from PySide2.QtWidgets import QMainWindow, QFileDialog
-import cv2
 
 from UiMainWindow import Ui_MainWindow
 from LangtonAlgorithm import LangtonAlgorithm
@@ -11,8 +10,6 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self._image = []
-        self._image_reset = []
         self._ant_algorithm = LangtonAlgorithm()
 
         self._connectWithGUI()
@@ -69,34 +66,32 @@ class MainWindow(QMainWindow):
             height = self.ui.heightSB.value()
             width = self.ui.widthSB.value()
 
-            self._image = self._ant_algorithm.generate_white_image(height, width)
+            self._ant_algorithm.generate_white_image(height, width)
 
         elif(self.ui.imageFromFileRB.isChecked()):
             path = self.ui.pathLE.text()
 
-            self._image = self._ant_algorithm.read_image_from_file(path)
+            self._ant_algorithm.read_image_from_file(path)
 
         elif(self.ui.randomImageRB.isChecked()):
             height = self.ui.heightSB.value()
             width = self.ui.widthSB.value()
             pro = self.ui.probabilitySB.value()
 
-            self._image = self._ant_algorithm.generate_random_image(height, width, pro)
+            self._ant_algorithm.generate_random_image(height, width, pro)
 
         self._setPushButtonsEnabled()
 
-        self._image_reset = self._image.copy()
+        self._ant_algorithm.copy_image_to_reset()
 
-        cv2.imshow('Image', self._image)
-        cv2.waitKey(0)
+        self._ant_algorithm.show_image()
 
     def _resetClick(self):
         print('RESET')
 
-        self._image = self._image_reset.copy()
+        self._ant_algorithm.copy_image_from_reset()
 
-        cv2.imshow('Image', self._image)
-        cv2.waitKey(0)
+        self._ant_algorithm.show_image()
 
     def _runClick(self):
         print('RUN')
@@ -108,12 +103,12 @@ class MainWindow(QMainWindow):
         iterations = self.ui.numOfItersSB.value()
 
         if(isSave and allIters):
-            self._ant_algorithm.run_algorithm(self._image, iterations, isSave)
+            self._ant_algorithm.run_algorithm(iterations, isSave)
         elif(isSave and everyNIters):
             saveIters = self.ui.saveItersSB.value()
-            self._ant_algorithm.run_algorithm(self._image, iterations, isSave, saveIters)
+            self._ant_algorithm.run_algorithm(iterations, isSave, saveIters)
         else:
-            self._ant_algorithm.run_algorithm(self._image, iterations)
+            self._ant_algorithm.run_algorithm(iterations)
 
     def _setPushButtonsEnabled(self):
         self.ui.resetPB.setEnabled(True)
@@ -139,7 +134,7 @@ class MainWindow(QMainWindow):
             self.ui.generateImagePB.setEnabled(True)
 
     def _checkIfRunButtonCanBeEnabled(self):
-        if(len(self._image) != 0):
+        if(self._ant_algorithm.isImageGenarated()):
             self.ui.runPB.setEnabled(True)
         else:
             self.ui.runPB.setEnabled(False)

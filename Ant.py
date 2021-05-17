@@ -3,8 +3,8 @@ import random
 
 class Ant():
     def __init__(self, board_size_y, board_size_x, direction=0):
-        self._board_size_y = board_size_y
-        self._board_size_x = board_size_x
+        self._max_position_y = board_size_y - 1
+        self._max_position_x = board_size_x - 1
         self._position_y = int(board_size_y / 2)
         self._position_x = int(board_size_x / 2)
         self._direction = direction
@@ -24,8 +24,8 @@ class Ant():
         return board
 
     def move(self):
-        max_y = self._board_size_y - 1
-        max_x = self._board_size_x - 1
+        max_y = self._max_position_y
+        max_x = self._max_position_x
         old_y = self._position_y
         old_x = self._position_x
 
@@ -57,8 +57,8 @@ class Ant():
     def _random_move(self):
         y = self._position_y
         x = self._position_x
-        max_y = self._board_size_y - 1
-        max_x = self._board_size_x - 1
+        max_y = self._max_position_y
+        max_x = self._max_position_x
 
         if(y == 0 and x == 0):
             directions = [90, 180]
