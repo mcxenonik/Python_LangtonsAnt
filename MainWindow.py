@@ -110,6 +110,8 @@ class MainWindow(QMainWindow):
         else:
             self._ant_algorithm.run_algorithm(iterations)
 
+        self._ant_algorithm.show_image()
+
     def _setPushButtonsEnabled(self):
         self.ui.resetPB.setEnabled(True)
         self.ui.runPB.setEnabled(True)

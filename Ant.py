@@ -16,10 +16,9 @@ class Ant():
         return (y, x)
 
     def change_color(self, board):
-        y = self._position_y
-        x = self._position_x
+        position = self.get_position()
 
-        board[y, x] = 255 if(board[y, x] == 0) else 0
+        board[position] = 255 if(board[position] == 0) else 0
 
         return board
 
@@ -39,20 +38,23 @@ class Ant():
             self._position_x -= 1
 
         if(self._position_y < 0 or self._position_x < 0
-           or self._position_y > max_y
-           or self._position_x > max_x):
+           or self._position_y > max_y or self._position_x > max_x):
             self._position_y = old_y
             self._position_x = old_x
 
             self._random_move()
 
-    def rotate(self, angle):
-        self._direction += angle
+    def rotate_right(self):
+        self._direction += 90
+
+        if(self._direction > 270):
+            self._direction = 0
+
+    def rotate_left(self):
+        self._direction -= 90
 
         if(self._direction < 0):
             self._direction = 270
-        elif(self._direction > 270):
-            self._direction = 0
 
     def _random_move(self):
         y = self._position_y
@@ -77,10 +79,5 @@ class Ant():
         elif(x == max_x):
             directions = [0, 180, 270]
 
-        direction = random.choice(directions)
-
-        self._set_direction(direction)
+        self._direction = random.choice(directions)
         self.move()
-
-    def _set_direction(self, new_direction):
-        self._direction = new_direction
