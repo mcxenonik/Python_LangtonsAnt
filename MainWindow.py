@@ -56,7 +56,10 @@ class MainWindow(QMainWindow):
         self.ui.saveItersSB.setEnabled(True)
 
     def _selectFileClick(self):
-        self.ui.pathLE.setText(QFileDialog.getOpenFileName()[0])
+        path = QFileDialog.getOpenFileName(caption="Open Image",
+                                           filter="Images (*.png *.jpg)")[0]
+        self.ui.pathLE.setText(path)
+
         self._checkIfPathisEmpty()
 
     def _generateImageClick(self):
