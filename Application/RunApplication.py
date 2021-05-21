@@ -1,7 +1,7 @@
 from PySide2.QtWidgets import QApplication
 import sys
 
-from MainWindow import MainWindow
+from Application.MainWindow import MainWindow
 
 
 def runApp(args):

@@ -1,4 +1,4 @@
-import random
+from random import choice
 
 
 class Ant():
@@ -79,5 +79,5 @@ class Ant():
         elif(x == max_x):
             directions = [0, 180, 270]
 
-        self._direction = random.choice(directions)
+        self._direction = choice(directions)
         self.move()

@@ -1,7 +1,7 @@
 from PySide2.QtWidgets import QMainWindow, QFileDialog
 
-from UiMainWindow import Ui_MainWindow
-from LangtonAlgorithm import LangtonAlgorithm
+from Application.UiMainWindow import Ui_MainWindow
+from Application.LangtonAlgorithm import LangtonAlgorithm
 
 
 class MainWindow(QMainWindow):

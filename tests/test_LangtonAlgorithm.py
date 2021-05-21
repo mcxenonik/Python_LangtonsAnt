@@ -1,6 +1,7 @@
-from ..LangtonAlgorithm import LangtonAlgorithm
-import cv2
-import numpy
+from cv2 import imread, threshold, THRESH_BINARY
+from numpy import ones
+
+from Application.LangtonAlgorithm import LangtonAlgorithm
 
 
 def test_creat_LangtonAlgorithm():
@@ -14,7 +15,7 @@ def test_generate_white_image():
     la1 = LangtonAlgorithm()
 
     la1.generate_white_image(100, 100)
-    img_ref = numpy.ones((100, 100)) * 255
+    img_ref = ones((100, 100)) * 255
 
     assert all((la1._image == img_ref).flatten())
 
@@ -24,8 +25,8 @@ def test_read_image_from_file():
 
     path = 'tests/test1.png'
     la1.read_image_from_file(path)
-    img_ref = cv2.imread(path, 0)
-    img_ref = cv2.threshold(img_ref, 128, 255, cv2.THRESH_BINARY)[1]
+    img_ref = imread(path, 0)
+    img_ref = threshold(img_ref, 128, 255, THRESH_BINARY)[1]
 
     assert all((la1._image == img_ref).flatten())
 
@@ -35,8 +36,8 @@ def test_read_color_image_from_file():
 
     path = 'tests/test2.png'
     la1.read_image_from_file(path)
-    img_ref = cv2.imread(path, 0)
-    img_ref = cv2.threshold(img_ref, 128, 255, cv2.THRESH_BINARY)[1]
+    img_ref = imread(path, 0)
+    img_ref = threshold(img_ref, 128, 255, THRESH_BINARY)[1]
 
     assert all((la1._image == img_ref).flatten())
 
@@ -101,7 +102,7 @@ def test_run_algorithm_white_image():
     la1 = LangtonAlgorithm()
 
     la1.generate_white_image(100, 100)
-    img_ref = cv2.imread('tests/test3.png', 0)
+    img_ref = imread('tests/test3.png', 0)
 
     la1.run_algorithm(11000)
 

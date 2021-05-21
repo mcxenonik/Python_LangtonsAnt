@@ -1,5 +1,6 @@
-import numpy
-from ..Ant import Ant
+from numpy import zeros, ones
+
+from Application.Ant import Ant
 
 def test_create_Ant():
     ant1 = Ant(100, 100)
@@ -39,7 +40,7 @@ def test_get_position():
 
 def test_change_color_to_black():
     ant1 = Ant(100, 100)
-    board = numpy.ones((100, 100)) * 255
+    board = ones((100, 100)) * 255
 
     board = ant1.change_color(board)
 
@@ -47,7 +48,7 @@ def test_change_color_to_black():
 
 
 def test_change_color_to_white():
-    board = numpy.zeros((100, 100))
+    board = zeros((100, 100))
     ant1 = Ant(100, 100)
 
     board = ant1.change_color(board)
@@ -87,7 +88,30 @@ def test_move_left():
     assert ant1.get_position() == (50, 49)
 
 
-def test_move_with_random_move():
+def test_move_with_random_move_0(monkeypatch):
+    def return_direction_0(directions):
+        return 0
+
+    monkeypatch.setattr('Ant.choice', return_direction_0)
+
+    ant1 = Ant(100, 100)
+    ant1.rotate_right
+    ant1.rotate_right
+    
+    while(ant1.get_position() != (99, 50)):
+        ant1.move()
+    
+    ant1.move()
+
+    assert ant1.get_position() == (98, 50)
+
+
+def test_move_with_random_move_180(monkeypatch):
+    def return_direction_180(directions):
+        return 180
+
+    monkeypatch.setattr('Ant.choice', return_direction_180)
+
     ant1 = Ant(100, 100)
     
     while(ant1.get_position() != (0, 50)):
@@ -95,9 +119,8 @@ def test_move_with_random_move():
     
     ant1.move()
 
-    assert (ant1.get_position() == (1, 50)      ##########
-            or ant1.get_position() == (0, 49)
-            or ant1.get_position() == (0, 51))
+    assert ant1.get_position() == (1, 50)
+            
 
 
 def test_rotate_right():

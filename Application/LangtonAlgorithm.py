@@ -1,8 +1,8 @@
-import cv2
-import numpy
-import random
+from cv2 import imread, imwrite, imshow, waitKey, threshold, THRESH_BINARY
+from numpy import ones, ndarray, size, uint8
+from random import randint
 
-from Ant import Ant
+from Application.Ant import Ant
 
 
 class LangtonAlgorithm():
@@ -11,17 +11,17 @@ class LangtonAlgorithm():
         self._image_reset = []
 
     def generate_white_image(self, height, width):
-        self._image = numpy.ones((height, width), numpy.uint8) * 255
+        self._image = ones((height, width), uint8) * 255
 
     def read_image_from_file(self, path):
-        self._image = cv2.imread(path, 0)
-        self._image = cv2.threshold(self._image, 128, 255, cv2.THRESH_BINARY)[1]
+        self._image = imread(path, 0)
+        self._image = threshold(self._image, 128, 255, THRESH_BINARY)[1]
 
     def generate_random_image(self, height, width, probabilty):
-        self._image = numpy.ndarray(height * width, numpy.uint8)
+        self._image = ndarray(height * width, uint8)
 
         for i in range(len(self._image)):
-            test = random.randint(1, 1000)
+            test = randint(1, 1000)
             self._image[i] = 0 if(test / 1000 < probabilty) else 255
 
         self._image.resize((height, width))
@@ -33,8 +33,8 @@ class LangtonAlgorithm():
         self._image = self._image_reset.copy()
 
     def show_image(self):
-        cv2.imshow('Image', self._image)
-        cv2.waitKey(0)
+        imshow('Image', self._image)
+        waitKey(0)
 
     def isImageGenarated(self):
         if(len(self._image) != 0):
@@ -44,11 +44,11 @@ class LangtonAlgorithm():
 
     def _save_image_to_file(self, image, iter):
         path = f'out/out_{iter}.png'
-        cv2.imwrite(path, image)
+        imwrite(path, image)
 
     def run_algorithm(self, number_of_iterations, isSave=False, saveIters=1):
-        height = numpy.size(self._image, 0)
-        width = numpy.size(self._image, 1)
+        height = size(self._image, 0)
+        width = size(self._image, 1)
 
         stefan = Ant(height, width)
 
