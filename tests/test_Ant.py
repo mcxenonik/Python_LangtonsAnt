@@ -92,11 +92,11 @@ def test_move_with_random_move_0(monkeypatch):
     def return_direction_0(directions):
         return 0
 
-    monkeypatch.setattr('Ant.choice', return_direction_0)
+    monkeypatch.setattr('Application.Ant.choice', return_direction_0)
 
     ant1 = Ant(100, 100)
-    ant1.rotate_right
-    ant1.rotate_right
+    ant1.rotate_right()
+    ant1.rotate_right()
     
     while(ant1.get_position() != (99, 50)):
         ant1.move()
@@ -110,7 +110,7 @@ def test_move_with_random_move_180(monkeypatch):
     def return_direction_180(directions):
         return 180
 
-    monkeypatch.setattr('Ant.choice', return_direction_180)
+    monkeypatch.setattr('Application.Ant.choice', return_direction_180)
 
     ant1 = Ant(100, 100)
     
