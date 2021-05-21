@@ -58,7 +58,8 @@ class MainWindow(QMainWindow):
     def _selectFileClick(self):
         path = QFileDialog.getOpenFileName(caption="Open Image",
                                            filter="Images (*.png *.jpg)")[0]
-        self.ui.pathLE.setText(path)
+        if(path != ''):
+            self.ui.pathLE.setText(path)
 
         self._checkIfPathisEmpty()
 
