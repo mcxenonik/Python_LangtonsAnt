@@ -229,6 +229,46 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.everyNIterationsRB, 2, 0, 1, 1, Qt.AlignRight|Qt.AlignVCenter)
 
+        self.gridLayoutWidget_3 = QWidget(self.groupBox)
+        self.gridLayoutWidget_3.setObjectName(u"gridLayoutWidget_3")
+        self.gridLayoutWidget_3.setGeometry(QRect(30, 90, 321, 51))
+        self.gridLayout_3 = QGridLayout(self.gridLayoutWidget_3)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.gridLayout_3.setHorizontalSpacing(3)
+        self.gridLayout_3.setVerticalSpacing(0)
+        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.checkBox_3 = QCheckBox(self.gridLayoutWidget_3)
+        self.checkBox_3.setObjectName(u"checkBox_3")
+        self.checkBox_3.setEnabled(False)
+        self.checkBox_3.setChecked(True)
+
+        self.gridLayout_3.addWidget(self.checkBox_3, 1, 0, 1, 1)
+
+        self.lineEdit_3 = QLineEdit(self.gridLayoutWidget_3)
+        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.lineEdit_3.setEnabled(False)
+
+        self.gridLayout_3.addWidget(self.lineEdit_3, 1, 1, 1, 1)
+
+        self.lineEdit_2 = QLineEdit(self.gridLayoutWidget_3)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_2.setEnabled(False)
+
+        self.gridLayout_3.addWidget(self.lineEdit_2, 0, 1, 1, 1)
+
+        self.checkBox_2 = QCheckBox(self.gridLayoutWidget_3)
+        self.checkBox_2.setObjectName(u"checkBox_2")
+        self.checkBox_2.setEnabled(False)
+        self.checkBox_2.setChecked(True)
+
+        self.gridLayout_3.addWidget(self.checkBox_2, 0, 0, 1, 1)
+
+        self.pushButton_5 = QPushButton(self.gridLayoutWidget_3)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.pushButton_5.setEnabled(False)
+
+        self.gridLayout_3.addWidget(self.pushButton_5, 1, 2, 1, 1)
+
 
         self.verticalLayout.addWidget(self.groupBox)
 
@@ -312,6 +352,11 @@ class Ui_MainWindow(object):
         self.saveImageToFileCB.setText(QCoreApplication.translate("MainWindow", u"Save images to files", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"iterations", None))
         self.everyNIterationsRB.setText(QCoreApplication.translate("MainWindow", u"Every          ", None))
+        self.checkBox_3.setText(QCoreApplication.translate("MainWindow", u"Default save path", None))
+        self.lineEdit_3.setText(QCoreApplication.translate("MainWindow", u"out/", None))
+        self.lineEdit_2.setText(QCoreApplication.translate("MainWindow", u"out_{numOfIter}.png", None))
+        self.checkBox_2.setText(QCoreApplication.translate("MainWindow", u"Default file name", None))
+        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Select folder", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Algorithm", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Number of iterations", None))
         self.resetPB.setText(QCoreApplication.translate("MainWindow", u"RESET", None))
