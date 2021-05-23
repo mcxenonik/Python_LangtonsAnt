@@ -1,19 +1,16 @@
-from PySide2.QtWidgets import QApplication, QFileDialog, QMainWindow
-import sys
-import cv2
+from PySide2.QtWidgets import QMainWindow, QFileDialog
 
-from ui_app_gui import Ui_MainWindow
-import langton
+from Application.UiMainWindow import Ui_MainWindow
+from Application.LangtonAlgorithm import LangtonAlgorithm
 
 
-class LangtonsAntWindow(QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self._image = []
-        self._image_reset = []
+        self._ant_algorithm = LangtonAlgorithm()
 
         self._connectWithGUI()
 
@@ -59,7 +56,11 @@ class LangtonsAntWindow(QMainWindow):
         self.ui.saveItersSB.setEnabled(True)
 
     def _selectFileClick(self):
-        self.ui.pathLE.setText(QFileDialog.getOpenFileName()[0])
+        path = QFileDialog.getOpenFileName(caption="Open Image",
+                                           filter="Images (*.png *.jpg)")[0]
+        if(path != ''):
+            self.ui.pathLE.setText(path)
+
         self._checkIfPathisEmpty()
 
     def _generateImageClick(self):
@@ -69,34 +70,32 @@ class LangtonsAntWindow(QMainWindow):
             height = self.ui.heightSB.value()
             width = self.ui.widthSB.value()
 
-            self._image = langton.generate_white_image(height, width)
+            self._ant_algorithm.generate_white_image(height, width)
 
         elif(self.ui.imageFromFileRB.isChecked()):
             path = self.ui.pathLE.text()
 
-            self._image = langton.read_image_from_file(path)
+            self._ant_algorithm.read_image_from_file(path)
 
         elif(self.ui.randomImageRB.isChecked()):
             height = self.ui.heightSB.value()
             width = self.ui.widthSB.value()
             pro = self.ui.probabilitySB.value()
 
-            self._image = langton.generate_random_image(height, width, pro)
+            self._ant_algorithm.generate_random_image(height, width, pro)
 
         self._setPushButtonsEnabled()
 
-        self._image_reset = self._image.copy()
+        self._ant_algorithm.copy_image_to_reset()
 
-        cv2.imshow('Image', self._image)
-        cv2.waitKey(0)
+        self._ant_algorithm.show_image()
 
     def _resetClick(self):
         print('RESET')
 
-        self._image = self._image_reset.copy()
+        self._ant_algorithm.copy_image_from_reset()
 
-        cv2.imshow('Image', self._image)
-        cv2.waitKey(0)
+        self._ant_algorithm.show_image()
 
     def _runClick(self):
         print('RUN')
@@ -108,12 +107,16 @@ class LangtonsAntWindow(QMainWindow):
         iterations = self.ui.numOfItersSB.value()
 
         if(isSave and allIters):
-            langton.ant_algorithm(self._image, iterations, isSave)
+            self._ant_algorithm.run_algorithm(iterations, isSave)
+
         elif(isSave and everyNIters):
             saveIters = self.ui.saveItersSB.value()
-            langton.ant_algorithm(self._image, iterations, isSave, saveIters)
+            self._ant_algorithm.run_algorithm(iterations, isSave, saveIters)
+
         else:
-            langton.ant_algorithm(self._image, iterations)
+            self._ant_algorithm.run_algorithm(iterations)
+
+        self._ant_algorithm.show_image()
 
     def _setPushButtonsEnabled(self):
         self.ui.resetPB.setEnabled(True)
@@ -139,18 +142,7 @@ class LangtonsAntWindow(QMainWindow):
             self.ui.generateImagePB.setEnabled(True)
 
     def _checkIfRunButtonCanBeEnabled(self):
-        if(len(self._image) != 0):
+        if(self._ant_algorithm.isImageGenarated()):
             self.ui.runPB.setEnabled(True)
         else:
             self.ui.runPB.setEnabled(False)
-
-
-def guiMain(args):
-    app = QApplication(args)
-    window = LangtonsAntWindow()
-    window.show()
-    return app.exec_()
-
-
-if __name__ == "__main__":
-    guiMain(sys.argv)
