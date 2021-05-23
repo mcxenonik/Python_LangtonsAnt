@@ -42,11 +42,7 @@ def test_read_color_image_from_file():
     assert all((la1._image == img_ref).flatten())
 
 
-def test_read_not_a_image_from_file():
-    pass
-
-
-def test_generate_random_imag():        ################
+def test_generate_random_imag():        # ###############
     la1 = LangtonAlgorithm()
 
     la1.generate_random_image(100, 100, 0.1)
@@ -57,9 +53,8 @@ def test_copy_image_to_reset():
 
     la1.generate_white_image(100, 100)
     img_ref = la1._image
-    
+
     la1.copy_image_to_reset()
-    
 
     assert all((la1._image_reset == img_ref).flatten())
 
@@ -70,9 +65,9 @@ def test_copy_image_from_reset():
     la1.generate_white_image(100, 100)
     la1.copy_image_to_reset()
     img_ref = la1._image_reset
-    
+
     la1.copy_image_from_reset()
-    
+
     assert all((la1._image == img_ref).flatten())
 
 
@@ -107,4 +102,3 @@ def test_run_algorithm_white_image():
     la1.run_algorithm(11000)
 
     assert all((la1._image == img_ref).flatten())
-    

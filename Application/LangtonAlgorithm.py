@@ -46,13 +46,13 @@ class LangtonAlgorithm():
         path = f'out/out_{iter}.png'
         imwrite(path, image)
 
-    def run_algorithm(self, number_of_iterations, isSave=False, saveIters=1):
+    def run_algorithm(self, num_of_iters, isSave=False, saveIters=1):
         height = size(self._image, 0)
         width = size(self._image, 1)
 
         stefan = Ant(height, width)
 
-        for i in range(1, number_of_iterations + 1):
+        for i in range(1, num_of_iters + 1):
             if(self._image[stefan.get_position()] == 255):
                 stefan.rotate_left()
                 self._image = stefan.change_color(self._image)
@@ -62,5 +62,5 @@ class LangtonAlgorithm():
                 self._image = stefan.change_color(self._image)
                 stefan.move()
 
-            if(isSave and (i % saveIters == 0 or i in [1, number_of_iterations])):
+            if(isSave and (i % saveIters == 0 or i in [1, num_of_iters])):
                 self._save_image_to_file(self._image, i)

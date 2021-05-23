@@ -108,9 +108,11 @@ class MainWindow(QMainWindow):
 
         if(isSave and allIters):
             self._ant_algorithm.run_algorithm(iterations, isSave)
+
         elif(isSave and everyNIters):
             saveIters = self.ui.saveItersSB.value()
             self._ant_algorithm.run_algorithm(iterations, isSave, saveIters)
+
         else:
             self._ant_algorithm.run_algorithm(iterations)
 
