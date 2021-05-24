@@ -3,7 +3,7 @@ from numpy import zeros, ones
 from Application.Ant import Ant
 
 
-def test_create_Ant():
+def test_create_Ant():                                       ###### Testy niepoprawnych danych, ale bez obsługi w kodzie
     ant1 = Ant(100, 100)
 
     assert ant1._max_position_y == 99

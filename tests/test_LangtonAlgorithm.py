@@ -4,7 +4,7 @@ from numpy import ones
 from Application.LangtonAlgorithm import LangtonAlgorithm
 
 
-def test_creat_LangtonAlgorithm():
+def test_creat_LangtonAlgorithm():                  ###### Testy niepoprawnych danych, ale bez obsługi w kodzie
     la1 = LangtonAlgorithm()
 
     assert len(la1._image) == 0
@@ -42,7 +42,7 @@ def test_read_color_image_from_file():
     assert all((la1._image == img_ref).flatten())
 
 
-def test_generate_random_imag():        # ###############
+def test_generate_random_imag():        # ############### zadany rozmiar, czy są dwie wartości, generujemy pliki tekstowe z ziarnem, podanie ziarenka
     la1 = LangtonAlgorithm()
 
     la1.generate_random_image(100, 100, 0.1)
@@ -71,10 +71,6 @@ def test_copy_image_from_reset():
     assert all((la1._image == img_ref).flatten())
 
 
-def test_show_image():
-    pass
-
-
 def test_isImageGenarated_true():
     la1 = LangtonAlgorithm()
 
@@ -89,7 +85,7 @@ def test_isImageGenarated_false():
     assert not(la1.isImageGenarated())
 
 
-def test_save_image_to_file():
+def test_save_image_to_file():                          ##### temporary directories
     pass
 
 

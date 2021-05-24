@@ -32,7 +32,7 @@ class LangtonAlgorithm():
     def copy_image_from_reset(self):
         self._image = self._image_reset.copy()
 
-    def show_image(self):
+    def show_image(self):                                               ###### Wyrzucić do GUI
         imshow('Image', self._image)
         waitKey(0)
 
@@ -42,7 +42,7 @@ class LangtonAlgorithm():
         else:
             return False
 
-    def _save_image_to_file(self, image, iter):
+    def _save_image_to_file(self, image, iter):                         ###### Wyrzucić do GUI
         path = f'out/out_{iter}.png'
         imwrite(path, image)
 
@@ -52,8 +52,8 @@ class LangtonAlgorithm():
 
         stefan = Ant(height, width)
 
-        for i in range(1, num_of_iters + 1):
-            if(self._image[stefan.get_position()] == 255):
+        for i in range(1, num_of_iters + 1):                                    ####### Środek pętli zamknąć w funkcji np. step
+            if(self._image[stefan.get_position()] == 255):                      
                 stefan.rotate_left()
                 self._image = stefan.change_color(self._image)
                 stefan.move()
