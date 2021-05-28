@@ -14,6 +14,9 @@ def test_create_Ant():                                       ###### Testy niepop
 
     assert ant1._direction == 0
 
+def test_create_Ant_negative_size():                                       ###### Testy niepoprawnych danych, ale bez obsługi w kodzie
+    ant1 = Ant(-5, -5)
+
 
 def test_create_Ant_with_odd_board_size():
     ant1 = Ant(25, 65)

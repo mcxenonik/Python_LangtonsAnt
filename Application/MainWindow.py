@@ -1,4 +1,5 @@
 from PySide2.QtWidgets import QMainWindow, QFileDialog
+from cv2 import imwrite, imshow, waitKey
 
 from Application.UiMainWindow import Ui_MainWindow
 from Application.LangtonAlgorithm import LangtonAlgorithm
@@ -10,7 +11,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self._ant_algorithm = LangtonAlgorithm()
+        self._antAlgorithm = LangtonAlgorithm()
 
         self._connectWithGUI()
 
@@ -34,7 +35,7 @@ class MainWindow(QMainWindow):
 
     def _imageFromFileClick(self):
         self._setImageGroupEnabled((False, False, True, False, True, False))
-        self._checkIfPathisEmpty()
+        self._checkIfPathIsEmpty()
 
     def _randomImageClick(self):
         self._setImageGroupEnabled((True, True, False, True, False, True))
@@ -61,7 +62,7 @@ class MainWindow(QMainWindow):
         if(path != ''):
             self.ui.pathLE.setText(path)
 
-        self._checkIfPathisEmpty()
+        self._checkIfPathIsEmpty()
 
     def _generateImageClick(self):
         print('Image generated')
@@ -70,32 +71,32 @@ class MainWindow(QMainWindow):
             height = self.ui.heightSB.value()
             width = self.ui.widthSB.value()
 
-            self._ant_algorithm.generate_white_image(height, width)
+            self._antAlgorithm.generate_white_image(height, width)
 
         elif(self.ui.imageFromFileRB.isChecked()):
             path = self.ui.pathLE.text()
 
-            self._ant_algorithm.read_image_from_file(path)
+            self._antAlgorithm.read_image_from_file(path)
 
         elif(self.ui.randomImageRB.isChecked()):
             height = self.ui.heightSB.value()
             width = self.ui.widthSB.value()
             pro = self.ui.probabilitySB.value()
 
-            self._ant_algorithm.generate_random_image(height, width, pro)
+            self._antAlgorithm.generate_random_image(height, width, pro)
 
         self._setPushButtonsEnabled()
 
-        self._ant_algorithm.copy_image_to_reset()
+        self._antAlgorithm.copy_image_to_reset()
 
-        self._ant_algorithm.show_image()
+        self._showImage()
 
     def _resetClick(self):
         print('RESET')
 
-        self._ant_algorithm.copy_image_from_reset()
+        self._antAlgorithm.copy_image_from_reset()
 
-        self._ant_algorithm.show_image()
+        self._showImage()
 
     def _runClick(self):
         print('RUN')
@@ -107,16 +108,16 @@ class MainWindow(QMainWindow):
         iterations = self.ui.numOfItersSB.value()
 
         if(isSave and allIters):
-            self._ant_algorithm.run_algorithm(iterations, isSave)
+            self._runAlgorithm(iterations, isSave)
 
         elif(isSave and everyNIters):
             saveIters = self.ui.saveItersSB.value()
-            self._ant_algorithm.run_algorithm(iterations, isSave, saveIters)
+            self._runAlgorithm(iterations, isSave, saveIters)
 
         else:
-            self._ant_algorithm.run_algorithm(iterations)
+            self._runAlgorithm(iterations)
 
-        self._ant_algorithm.show_image()
+        self._showImage()
 
     def _setPushButtonsEnabled(self):
         self.ui.resetPB.setEnabled(True)
@@ -134,7 +135,7 @@ class MainWindow(QMainWindow):
         self.ui.allIterationsRB.setEnabled(isEnabled)
         self.ui.everyNIterationsRB.setEnabled(isEnabled)
 
-    def _checkIfPathisEmpty(self):
+    def _checkIfPathIsEmpty(self):
         if(self.ui.pathLE.text() == ''):
             self.ui.runPB.setEnabled(False)
             self.ui.generateImagePB.setEnabled(False)
@@ -142,7 +143,25 @@ class MainWindow(QMainWindow):
             self.ui.generateImagePB.setEnabled(True)
 
     def _checkIfRunButtonCanBeEnabled(self):
-        if(self._ant_algorithm.isImageGenarated()):
+        if(self._antAlgorithm.is_image_genarated()):
             self.ui.runPB.setEnabled(True)
         else:
             self.ui.runPB.setEnabled(False)
+
+    def _showImage(self):
+        image = self._antAlgorithm.get_image()
+        imshow('Image', image)
+        waitKey(0)
+
+    def _saveImageToFile(self, image, iter):
+        path = f'out/out_{iter}.png'
+        imwrite(path, image)
+
+    def _runAlgorithm(self, numOfIters, isSave=False, saveIters=1):
+        self._antAlgorithm.create_ant()
+
+        for i in range(1, numOfIters + 1):
+            image = self._antAlgorithm.step_algorithm()
+            
+            if(isSave and (i % saveIters == 0 or i in [1, numOfIters])):
+                self._saveImageToFile(image, i)
