@@ -162,6 +162,6 @@ class MainWindow(QMainWindow):
 
         for i in range(1, numOfIters + 1):
             image = self._antAlgorithm.step_algorithm()
-            
+
             if(isSave and (i % saveIters == 0 or i in [1, numOfIters])):
                 self._saveImageToFile(image, i)

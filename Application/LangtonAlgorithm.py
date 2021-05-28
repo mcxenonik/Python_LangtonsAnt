@@ -1,6 +1,6 @@
 from cv2 import imread, threshold, THRESH_BINARY
-from numpy import ones, ndarray, size, uint8
-from numpy.random import choice, binomial, seed
+from numpy import ones, size, uint8
+from numpy.random import binomial, seed
 # from random import randint, seed
 
 from Application.Ant import Ant
@@ -33,7 +33,7 @@ class LangtonAlgorithm():
 
         # self._image.resize((height, width))
 
-        self._image = binomial(1, 1 - probabilty, 
+        self._image = binomial(1, 1 - probabilty,
                                (height, width)).astype(uint8) * 255
 
     def copy_image_to_reset(self):
@@ -55,7 +55,7 @@ class LangtonAlgorithm():
         self._ant = Ant(height, width)
 
     def step_algorithm(self):
-        if(self._image[self._ant.get_position()] == 255):                  
+        if(self._image[self._ant.get_position()] == 255):
             self._ant.rotate_left()
             self._image = self._ant.change_color(self._image)
             self._ant.move()
@@ -63,5 +63,5 @@ class LangtonAlgorithm():
             self._ant.rotate_right()
             self._image = self._ant.change_color(self._image)
             self._ant.move()
-        
+
         return self._image

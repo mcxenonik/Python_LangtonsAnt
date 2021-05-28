@@ -1,15 +1,13 @@
 from cv2 import imread, threshold, THRESH_BINARY
 from numpy.testing import assert_array_equal
-from numpy.random import choice, binomial, seed
+from numpy.random import binomial, seed
 from numpy import ones, size, uint8
 import pytest
 
 from Application.LangtonAlgorithm import LangtonAlgorithm
-# with pytest.raises(AssertionError):
-# assert all((la1._image == img_ref).flatten())
 
 
-def test_creat_LangtonAlgorithm():                  ###### Testy niepoprawnych danych, ale bez obsługi w kodzie
+def test_creat_LangtonAlgorithm():
     la1 = LangtonAlgorithm()
 
     assert len(la1._image) == 0
@@ -54,8 +52,8 @@ def test_read_image_from_file_type():
 def test_read_image_from_file_wrong_path():
     la1 = LangtonAlgorithm()
     path = 'sth'
-    la1.read_image_from_file(path)        
-    
+    la1.read_image_from_file(path)
+
     assert_array_equal(la1._image, None)
 
 
@@ -114,8 +112,7 @@ def test_generate_random_image_seed():
     la1.generate_random_image(100, 100, 0.1, 666)
 
     seed(666)
-    img_ref = binomial(1, 1 - 0.1, 
-                               (100, 100)).astype(uint8) * 255
+    img_ref = binomial(1, 1 - 0.1, (100, 100)).astype(uint8) * 255
 
     assert_array_equal(la1._image, img_ref)
 

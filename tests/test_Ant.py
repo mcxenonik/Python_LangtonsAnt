@@ -3,7 +3,7 @@ from numpy import zeros, ones
 from Application.Ant import Ant
 
 
-def test_create_Ant():                                       ###### Testy niepoprawnych danych, ale bez obsługi w kodzie
+def test_create_Ant():
     ant1 = Ant(100, 100)
 
     assert ant1._max_position_y == 99
@@ -14,8 +14,9 @@ def test_create_Ant():                                       ###### Testy niepop
 
     assert ant1._direction == 0
 
-def test_create_Ant_negative_size():                                       ###### Testy niepoprawnych danych, ale bez obsługi w kodzie
-    ant1 = Ant(-5, -5)
+
+# def test_create_Ant_negative_size():
+#     ant1 = Ant(-5, -5)
 
 
 def test_create_Ant_with_odd_board_size():
