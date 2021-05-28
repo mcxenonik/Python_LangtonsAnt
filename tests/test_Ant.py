@@ -141,7 +141,3 @@ def test_rotate_left():
     ant1.rotate_left()
 
     assert ant1._direction == 270
-
-
-def test_random_move():
-    pass

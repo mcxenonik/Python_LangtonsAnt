@@ -41,7 +41,7 @@ def test_read_image_from_file():
     assert_array_equal(la1._image, img_ref)
 
 
-def test_read_image_from_file_type():
+def test_read_image_from_file_wrong_type():
     la1 = LangtonAlgorithm()
     path = 0
 
