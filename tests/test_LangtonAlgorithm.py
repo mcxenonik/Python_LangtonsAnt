@@ -1,6 +1,12 @@
 from cv2 import imread, threshold, THRESH_BINARY
-from numpy import ones
+from numpy.testing import assert_array_equal
+from numpy.random import binomial, seed
+from numpy import ones, size, uint8
+import pytest
 
+from Application.Const import COLOR_IMAGE_THRESHOLD_VALUE as CITVAL
+from Application.Const import IMAGE_MAX_VALUE as IMAXVAL
+from Application.Const import IMAGE_MIN_VALUE as IMINVAL
 from Application.LangtonAlgorithm import LangtonAlgorithm
 
 
@@ -15,37 +21,116 @@ def test_generate_white_image():
     la1 = LangtonAlgorithm()
 
     la1.generate_white_image(100, 100)
-    img_ref = ones((100, 100)) * 255
+    img_ref = ones((100, 100)) * IMAXVAL
 
-    assert all((la1._image == img_ref).flatten())
+    assert_array_equal(la1._image, img_ref)
 
 
-def test_read_image_from_file():
+def test_generate_white_image_negative_size():
+    la1 = LangtonAlgorithm()
+
+    with pytest.raises(ValueError):
+        la1.generate_white_image(-5, 100)
+
+
+def test_read_png_image_from_file():
     la1 = LangtonAlgorithm()
 
     path = 'tests/test1.png'
     la1.read_image_from_file(path)
     img_ref = imread(path, 0)
-    img_ref = threshold(img_ref, 128, 255, THRESH_BINARY)[1]
+    img_ref = threshold(img_ref, CITVAL, IMAXVAL, THRESH_BINARY)[1]
 
-    assert all((la1._image == img_ref).flatten())
+    assert_array_equal(la1._image, img_ref)
+
+
+def test_read_jpg_image_from_file():
+    la1 = LangtonAlgorithm()
+
+    path = 'tests/test2.jpg'
+    la1.read_image_from_file(path)
+    img_ref = imread(path, 0)
+    img_ref = threshold(img_ref, CITVAL, IMAXVAL, THRESH_BINARY)[1]
+
+    assert_array_equal(la1._image, img_ref)
+
+
+def test_read_image_from_file_wrong_type():
+    la1 = LangtonAlgorithm()
+    path = 666
+
+    with pytest.raises(TypeError):
+        la1.read_image_from_file(path)
+
+
+def test_read_image_from_file_wrong_path():
+    la1 = LangtonAlgorithm()
+    path = 'sth'
+    la1.read_image_from_file(path)
+
+    assert_array_equal(la1._image, None)
 
 
 def test_read_color_image_from_file():
     la1 = LangtonAlgorithm()
 
-    path = 'tests/test2.png'
+    path = 'tests/test3.png'
     la1.read_image_from_file(path)
     img_ref = imread(path, 0)
-    img_ref = threshold(img_ref, 128, 255, THRESH_BINARY)[1]
+    img_ref = threshold(img_ref, CITVAL, IMAXVAL, THRESH_BINARY)[1]
 
-    assert all((la1._image == img_ref).flatten())
+    assert_array_equal(la1._image, img_ref)
 
 
-def test_generate_random_imag():        # ###############
+def test_generate_random_image_size():
     la1 = LangtonAlgorithm()
 
     la1.generate_random_image(100, 100, 0.1)
+    image = la1.get_image()
+
+    assert size(image, 0) == 100
+    assert size(image, 1) == 100
+
+
+def test_generate_random_image_values():
+    la1 = LangtonAlgorithm()
+
+    la1.generate_random_image(100, 100, 0.1)
+    image = la1.get_image().flatten()
+
+    assert all((image == IMINVAL) + (image == IMAXVAL))
+
+
+def test_generate_random_image_negative_size():
+    la1 = LangtonAlgorithm()
+
+    with pytest.raises(ValueError):
+        la1.generate_random_image(-5, 100, 0.1)
+
+
+def test_generate_random_image_negative_probability():
+    la1 = LangtonAlgorithm()
+
+    with pytest.raises(ValueError):
+        la1.generate_random_image(100, 100, -2)
+
+
+def test_generate_random_image_negative_probability_over_1():
+    la1 = LangtonAlgorithm()
+
+    with pytest.raises(ValueError):
+        la1.generate_random_image(100, 100, 2)
+
+
+def test_generate_random_image_seed():
+    la1 = LangtonAlgorithm()
+
+    la1.generate_random_image(100, 100, 0.1, 666)
+
+    seed(666)
+    img_ref = binomial(1, 1 - 0.1, (100, 100)).astype(uint8) * IMAXVAL
+
+    assert_array_equal(la1._image, img_ref)
 
 
 def test_copy_image_to_reset():
@@ -56,7 +141,7 @@ def test_copy_image_to_reset():
 
     la1.copy_image_to_reset()
 
-    assert all((la1._image_reset == img_ref).flatten())
+    assert_array_equal(la1._image_reset, img_ref)
 
 
 def test_copy_image_from_reset():
@@ -68,11 +153,7 @@ def test_copy_image_from_reset():
 
     la1.copy_image_from_reset()
 
-    assert all((la1._image == img_ref).flatten())
-
-
-def test_show_image():
-    pass
+    assert_array_equal(la1._image, img_ref)
 
 
 def test_isImageGenarated_true():
@@ -80,25 +161,39 @@ def test_isImageGenarated_true():
 
     la1.generate_white_image(100, 100)
 
-    assert la1.isImageGenarated()
+    assert la1.is_image_genarated()
 
 
 def test_isImageGenarated_false():
     la1 = LangtonAlgorithm()
 
-    assert not(la1.isImageGenarated())
+    assert not(la1.is_image_genarated())
 
 
-def test_save_image_to_file():
-    pass
+def test_create_ant():
+    la1 = LangtonAlgorithm()
+
+    la1.generate_white_image(100, 100)
+    la1.create_ant()
+
+    assert la1._ant._max_position_y == 99
+    assert la1._ant._max_position_x == 99
+
+    assert la1._ant._position_y == 50
+    assert la1._ant._position_x == 50
+
+    assert la1._ant._direction == 0
 
 
 def test_run_algorithm_white_image():
     la1 = LangtonAlgorithm()
 
     la1.generate_white_image(100, 100)
-    img_ref = imread('tests/test3.png', 0)
+    img_ref = imread('tests/test4.png', 0)
 
-    la1.run_algorithm(11000)
+    la1.create_ant()
 
-    assert all((la1._image == img_ref).flatten())
+    for i in range(1, 11001):
+        la1.step_algorithm()
+
+    assert_array_equal(la1._image, img_ref)

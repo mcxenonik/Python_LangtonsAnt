@@ -434,7 +434,7 @@
           <number>0</number>
          </property>
          <item row="1" column="0">
-          <widget class="QCheckBox" name="checkBox_3">
+          <widget class="QCheckBox" name="defaultSavePathCB">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -447,7 +447,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="lineEdit_3">
+          <widget class="QLineEdit" name="saveFilePathLE">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -457,7 +457,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit_2">
+          <widget class="QLineEdit" name="saveFileNameLE">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -467,7 +467,7 @@
           </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QCheckBox" name="checkBox_2">
+          <widget class="QCheckBox" name="defaultFileNameCB">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -480,7 +480,7 @@
           </widget>
          </item>
          <item row="1" column="2">
-          <widget class="QPushButton" name="pushButton_5">
+          <widget class="QPushButton" name="selectSaveFolderPB">
            <property name="enabled">
             <bool>false</bool>
            </property>
