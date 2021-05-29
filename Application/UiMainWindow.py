@@ -18,6 +18,11 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(361, 476)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayoutWidget = QWidget(self.centralwidget)
@@ -29,9 +34,6 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.groupBox_2 = QGroupBox(self.verticalLayoutWidget)
         self.groupBox_2.setObjectName(u"groupBox_2")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
         self.groupBox_2.setSizePolicy(sizePolicy)
         self.gridLayoutWidget = QWidget(self.groupBox_2)
@@ -247,6 +249,7 @@ class Ui_MainWindow(object):
         self.saveFilePathLE = QLineEdit(self.gridLayoutWidget_3)
         self.saveFilePathLE.setObjectName(u"saveFilePathLE")
         self.saveFilePathLE.setEnabled(False)
+        self.saveFilePathLE.setReadOnly(True)
 
         self.gridLayout_3.addWidget(self.saveFilePathLE, 1, 1, 1, 1)
 
@@ -336,7 +339,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Langton's Ant", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Image", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Height", None))
         self.whiteImageRB.setText(QCoreApplication.translate("MainWindow", u"White image", None))
@@ -354,7 +357,8 @@ class Ui_MainWindow(object):
         self.everyNIterationsRB.setText(QCoreApplication.translate("MainWindow", u"Every          ", None))
         self.defaultSavePathCB.setText(QCoreApplication.translate("MainWindow", u"Default save path", None))
         self.saveFilePathLE.setText(QCoreApplication.translate("MainWindow", u"out/", None))
-        self.saveFileNameLE.setText(QCoreApplication.translate("MainWindow", u"out_{numOfIter}.png", None))
+        self.saveFileNameLE.setInputMask(QCoreApplication.translate("MainWindow", u"NNNNNNNNNN", None))
+        self.saveFileNameLE.setText(QCoreApplication.translate("MainWindow", u"outImage", None))
         self.defaultFileNameCB.setText(QCoreApplication.translate("MainWindow", u"Default file name", None))
         self.selectSaveFolderPB.setText(QCoreApplication.translate("MainWindow", u"Select folder", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Algorithm", None))
