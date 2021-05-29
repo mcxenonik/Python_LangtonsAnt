@@ -4,6 +4,9 @@ from numpy.random import binomial, seed
 from numpy import ones, size, uint8
 import pytest
 
+from Application.Const import COLOR_IMAGE_THRESHOLD_VALUE as CITVAL
+from Application.Const import IMAGE_MAX_VALUE as IMAXVAL
+from Application.Const import IMAGE_MIN_VALUE as IMINVAL
 from Application.LangtonAlgorithm import LangtonAlgorithm
 
 
@@ -18,7 +21,7 @@ def test_generate_white_image():
     la1 = LangtonAlgorithm()
 
     la1.generate_white_image(100, 100)
-    img_ref = ones((100, 100)) * 255
+    img_ref = ones((100, 100)) * IMAXVAL
 
     assert_array_equal(la1._image, img_ref)
 
@@ -36,7 +39,7 @@ def test_read_image_from_file():
     path = 'tests/test1.png'
     la1.read_image_from_file(path)
     img_ref = imread(path, 0)
-    img_ref = threshold(img_ref, 128, 255, THRESH_BINARY)[1]
+    img_ref = threshold(img_ref, CITVAL, IMAXVAL, THRESH_BINARY)[1]
 
     assert_array_equal(la1._image, img_ref)
 
@@ -63,7 +66,7 @@ def test_read_color_image_from_file():
     path = 'tests/test2.png'
     la1.read_image_from_file(path)
     img_ref = imread(path, 0)
-    img_ref = threshold(img_ref, 128, 255, THRESH_BINARY)[1]
+    img_ref = threshold(img_ref, CITVAL, IMAXVAL, THRESH_BINARY)[1]
 
     assert_array_equal(la1._image, img_ref)
 
@@ -86,7 +89,7 @@ def test_generate_random_image_values():
 
     test = True
     for i in range(len(image)):
-        if(image[i] not in [0, 255]):
+        if(image[i] not in [IMINVAL, IMAXVAL]):
             test = False
 
     assert test
@@ -112,7 +115,7 @@ def test_generate_random_image_seed():
     la1.generate_random_image(100, 100, 0.1, 666)
 
     seed(666)
-    img_ref = binomial(1, 1 - 0.1, (100, 100)).astype(uint8) * 255
+    img_ref = binomial(1, 1 - 0.1, (100, 100)).astype(uint8) * IMAXVAL
 
     assert_array_equal(la1._image, img_ref)
 

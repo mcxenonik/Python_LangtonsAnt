@@ -1,5 +1,8 @@
 from random import choice
 
+from Application.Const import IMAGE_MAX_VALUE as IMAXVAL
+from Application.Const import IMAGE_MIN_VALUE as IMINVAL
+
 
 class Ant():
     def __init__(self, board_size_y, board_size_x, direction=0):
@@ -18,7 +21,7 @@ class Ant():
     def change_color(self, board):
         position = self.get_position()
 
-        board[position] = 255 if(board[position] == 0) else 0
+        board[position] = IMAXVAL if(board[position] == IMINVAL) else IMINVAL
 
         return board
 

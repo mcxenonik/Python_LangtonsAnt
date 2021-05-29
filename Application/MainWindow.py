@@ -1,8 +1,9 @@
 from PySide2.QtWidgets import QMainWindow, QFileDialog
 from cv2 import imwrite, imshow, waitKey
 
-from Application.UiMainWindow import Ui_MainWindow
 from Application.LangtonAlgorithm import LangtonAlgorithm
+from Application.UiMainWindow import Ui_MainWindow
+from Application.Const import SUPPORTED_FILE_TYPES
 
 
 class MainWindow(QMainWindow):
@@ -58,7 +59,7 @@ class MainWindow(QMainWindow):
 
     def _selectFileClick(self):
         path = QFileDialog.getOpenFileName(caption="Open Image",
-                                           filter="Images (*.png *.jpg)")[0]
+                                           filter=SUPPORTED_FILE_TYPES)[0]
         if(path != ''):
             self.ui.pathLE.setText(path)
 
@@ -81,9 +82,9 @@ class MainWindow(QMainWindow):
         elif(self.ui.randomImageRB.isChecked()):
             height = self.ui.heightSB.value()
             width = self.ui.widthSB.value()
-            pro = self.ui.probabilitySB.value()
+            proba = self.ui.probabilitySB.value()
 
-            self._antAlgorithm.generate_random_image(height, width, pro)
+            self._antAlgorithm.generate_random_image(height, width, proba)
 
         self._setPushButtonsEnabled()
 

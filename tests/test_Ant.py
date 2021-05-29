@@ -1,5 +1,7 @@
 from numpy import zeros, ones
 
+from Application.Const import IMAGE_MAX_VALUE as IMAXVAL
+from Application.Const import IMAGE_MIN_VALUE as IMINVAL
 from Application.Ant import Ant
 
 
@@ -13,10 +15,6 @@ def test_create_Ant():
     assert ant1._position_x == 50
 
     assert ant1._direction == 0
-
-
-# def test_create_Ant_negative_size():
-#     ant1 = Ant(-5, -5)
 
 
 def test_create_Ant_with_odd_board_size():
@@ -45,20 +43,20 @@ def test_get_position():
 
 def test_change_color_to_black():
     ant1 = Ant(100, 100)
-    board = ones((100, 100)) * 255
+    board = ones((100, 100)) * IMAXVAL
 
     board = ant1.change_color(board)
 
-    assert board[ant1.get_position()] == 0
+    assert board[ant1.get_position()] == IMINVAL
 
 
 def test_change_color_to_white():
-    board = zeros((100, 100))
     ant1 = Ant(100, 100)
+    board = zeros((100, 100))
 
     board = ant1.change_color(board)
 
-    assert board[ant1.get_position()] == 255
+    assert board[ant1.get_position()] == IMAXVAL
 
 
 def test_move_forward():
