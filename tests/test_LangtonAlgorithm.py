@@ -33,7 +33,7 @@ def test_generate_white_image_negative_size():
         la1.generate_white_image(-5, 100)
 
 
-def test_read_image_from_file():
+def test_read_png_image_from_file():
     la1 = LangtonAlgorithm()
 
     path = 'tests/test1.png'
@@ -44,9 +44,20 @@ def test_read_image_from_file():
     assert_array_equal(la1._image, img_ref)
 
 
+def test_read_jpg_image_from_file():
+    la1 = LangtonAlgorithm()
+
+    path = 'tests/test2.jpg'
+    la1.read_image_from_file(path)
+    img_ref = imread(path, 0)
+    img_ref = threshold(img_ref, CITVAL, IMAXVAL, THRESH_BINARY)[1]
+
+    assert_array_equal(la1._image, img_ref)
+
+
 def test_read_image_from_file_wrong_type():
     la1 = LangtonAlgorithm()
-    path = 0
+    path = 666
 
     with pytest.raises(TypeError):
         la1.read_image_from_file(path)
@@ -63,7 +74,7 @@ def test_read_image_from_file_wrong_path():
 def test_read_color_image_from_file():
     la1 = LangtonAlgorithm()
 
-    path = 'tests/test2.png'
+    path = 'tests/test3.png'
     la1.read_image_from_file(path)
     img_ref = imread(path, 0)
     img_ref = threshold(img_ref, CITVAL, IMAXVAL, THRESH_BINARY)[1]
@@ -87,12 +98,7 @@ def test_generate_random_image_values():
     la1.generate_random_image(100, 100, 0.1)
     image = la1.get_image().flatten()
 
-    test = True
-    for i in range(len(image)):
-        if(image[i] not in [IMINVAL, IMAXVAL]):
-            test = False
-
-    assert test
+    assert all((image == IMINVAL) + (image == IMAXVAL))
 
 
 def test_generate_random_image_negative_size():
@@ -107,6 +113,13 @@ def test_generate_random_image_negative_probability():
 
     with pytest.raises(ValueError):
         la1.generate_random_image(100, 100, -2)
+
+
+def test_generate_random_image_negative_probability_over_1():
+    la1 = LangtonAlgorithm()
+
+    with pytest.raises(ValueError):
+        la1.generate_random_image(100, 100, 2)
 
 
 def test_generate_random_image_seed():
@@ -176,7 +189,7 @@ def test_run_algorithm_white_image():
     la1 = LangtonAlgorithm()
 
     la1.generate_white_image(100, 100)
-    img_ref = imread('tests/test3.png', 0)
+    img_ref = imread('tests/test4.png', 0)
 
     la1.create_ant()
 

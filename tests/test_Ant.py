@@ -109,6 +109,23 @@ def test_move_with_random_move_0(monkeypatch):
     assert ant1.get_position() == (98, 50)
 
 
+def test_move_with_random_move_90(monkeypatch):
+    def return_direction_90(directions):
+        return 90
+
+    monkeypatch.setattr('Application.Ant.choice', return_direction_90)
+
+    ant1 = Ant(100, 100)
+    ant1.rotate_left()
+
+    while(ant1.get_position() != (50, 0)):
+        ant1.move()
+
+    ant1.move()
+
+    assert ant1.get_position() == (50, 1)
+
+
 def test_move_with_random_move_180(monkeypatch):
     def return_direction_180(directions):
         return 180
@@ -123,6 +140,23 @@ def test_move_with_random_move_180(monkeypatch):
     ant1.move()
 
     assert ant1.get_position() == (1, 50)
+
+
+def test_move_with_random_move_270(monkeypatch):
+    def return_direction_270(directions):
+        return 270
+
+    monkeypatch.setattr('Application.Ant.choice', return_direction_270)
+
+    ant1 = Ant(100, 100)
+    ant1.rotate_right()
+
+    while(ant1.get_position() != (50, 99)):
+        ant1.move()
+
+    ant1.move()
+
+    assert ant1.get_position() == (50, 98)
 
 
 def test_rotate_right():
