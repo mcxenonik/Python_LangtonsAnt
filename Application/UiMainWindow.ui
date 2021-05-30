@@ -76,6 +76,34 @@
          <property name="spacing">
           <number>0</number>
          </property>
+         <item row="3" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QDoubleSpinBox" name="probabilitySB">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="decimals">
+            <number>3</number>
+           </property>
+           <property name="maximum">
+            <double>1.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>0.100000000000000</double>
+           </property>
+           <property name="value">
+            <double>0.100000000000000</double>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="label_2">
            <property name="sizePolicy">
@@ -86,6 +114,101 @@
            </property>
            <property name="text">
             <string>Height</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QLabel" name="label_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Width</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QRadioButton" name="imageFromFileRB">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Image from file</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QSpinBox" name="widthSB">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="frame">
+            <bool>true</bool>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="showGroupSeparator" stdset="0">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <number>2</number>
+           </property>
+           <property name="maximum">
+            <number>1000</number>
+           </property>
+           <property name="singleStep">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+          <widget class="QRadioButton" name="randomImageRB">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Random image</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QLabel" name="label_6">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Path to image</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -133,61 +256,7 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
-          <widget class="QRadioButton" name="imageFromFileRB">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Image from file</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
-          <widget class="QRadioButton" name="randomImageRB">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Random image</string>
-           </property>
-          </widget>
-         </item>
          <item row="5" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QDoubleSpinBox" name="probabilitySB">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-           <property name="decimals">
-            <number>3</number>
-           </property>
-           <property name="maximum">
-            <double>1.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.100000000000000</double>
-           </property>
-           <property name="value">
-            <double>0.100000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLineEdit" name="pathLE">
            <property name="enabled">
             <bool>false</bool>
@@ -203,21 +272,8 @@
            </property>
           </widget>
          </item>
-         <item row="5" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QPushButton" name="generateImagePB">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Generate image</string>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="label_8">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -228,64 +284,14 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Path to image</string>
+            <string>Probability of black pixels</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="0" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="label_3">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Width</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QSpinBox" name="widthSB">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="frame">
-            <bool>true</bool>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-           <property name="showGroupSeparator" stdset="0">
-            <bool>false</bool>
-           </property>
-           <property name="minimum">
-            <number>2</number>
-           </property>
-           <property name="maximum">
-            <number>1000</number>
-           </property>
-           <property name="singleStep">
-            <number>100</number>
-           </property>
-           <property name="value">
-            <number>100</number>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+         <item row="5" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QPushButton" name="selectFilePB">
            <property name="enabled">
             <bool>false</bool>
@@ -304,11 +310,8 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
-          <widget class="QLabel" name="label_6">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
+         <item row="3" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QPushButton" name="generateImagePB">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -316,10 +319,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Probability of black pixels</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <string>Generate image</string>
            </property>
           </widget>
          </item>
@@ -389,7 +389,7 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="2" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+         <item row="2" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="label_5">
            <property name="enabled">
             <bool>false</bool>
@@ -399,7 +399,7 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="1" alignment="Qt::AlignLeft|Qt::AlignVCenter">
+         <item row="2" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QSpinBox" name="saveItersSB">
            <property name="enabled">
             <bool>false</bool>
@@ -455,7 +455,7 @@
          <property name="verticalSpacing">
           <number>0</number>
          </property>
-         <item row="1" column="0">
+         <item row="1" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
           <widget class="QCheckBox" name="defaultSavePathCB">
            <property name="enabled">
             <bool>false</bool>
@@ -468,7 +468,7 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="1" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLineEdit" name="saveFilePathLE">
            <property name="enabled">
             <bool>false</bool>
@@ -481,7 +481,7 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
+         <item row="0" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLineEdit" name="saveFileNameLE">
            <property name="enabled">
             <bool>false</bool>
@@ -494,7 +494,7 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="0">
+         <item row="0" column="0" alignment="Qt::AlignLeft|Qt::AlignVCenter">
           <widget class="QCheckBox" name="defaultFileNameCB">
            <property name="enabled">
             <bool>false</bool>
@@ -507,7 +507,7 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="2">
+         <item row="1" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QPushButton" name="selectSaveFolderPB">
            <property name="enabled">
             <bool>false</bool>
@@ -536,7 +536,7 @@
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
+         <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="label">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -552,7 +552,7 @@
            </property>
           </widget>
          </item>
-         <item>
+         <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QSpinBox" name="numOfItersSB">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -589,7 +589,7 @@
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
+         <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QPushButton" name="resetPB">
            <property name="enabled">
             <bool>false</bool>
@@ -599,7 +599,7 @@
            </property>
           </widget>
          </item>
-         <item>
+         <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QPushButton" name="runPB">
            <property name="enabled">
             <bool>false</bool>
