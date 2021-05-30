@@ -31,6 +31,10 @@
   <property name="windowTitle">
    <string>Langton's Ant</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>ant_icon.png</normaloff>ant_icon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
