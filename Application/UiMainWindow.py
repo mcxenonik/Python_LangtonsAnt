@@ -37,14 +37,14 @@ class Ui_MainWindow(object):
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.groupBox_2 = QGroupBox(self.verticalLayoutWidget)
-        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.groupBox = QGroupBox(self.verticalLayoutWidget)
+        self.groupBox.setObjectName(u"groupBox")
         sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
-        self.groupBox_2.setSizePolicy(sizePolicy1)
-        self.gridLayoutWidget = QWidget(self.groupBox_2)
+        sizePolicy1.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
+        self.groupBox.setSizePolicy(sizePolicy1)
+        self.gridLayoutWidget = QWidget(self.groupBox)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
         self.gridLayoutWidget.setGeometry(QRect(10, 10, 341, 161))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
@@ -68,21 +68,21 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.probabilitySB, 3, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.label_2 = QLabel(self.gridLayoutWidget)
-        self.label_2.setObjectName(u"label_2")
-        sizePolicy1.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy1)
-        self.label_2.setAlignment(Qt.AlignCenter)
+        self.heightLabel = QLabel(self.gridLayoutWidget)
+        self.heightLabel.setObjectName(u"heightLabel")
+        sizePolicy1.setHeightForWidth(self.heightLabel.sizePolicy().hasHeightForWidth())
+        self.heightLabel.setSizePolicy(sizePolicy1)
+        self.heightLabel.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_2, 0, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.gridLayout.addWidget(self.heightLabel, 0, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.label_3 = QLabel(self.gridLayoutWidget)
-        self.label_3.setObjectName(u"label_3")
-        sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy1)
-        self.label_3.setAlignment(Qt.AlignCenter)
+        self.widthLabel = QLabel(self.gridLayoutWidget)
+        self.widthLabel.setObjectName(u"widthLabel")
+        sizePolicy1.setHeightForWidth(self.widthLabel.sizePolicy().hasHeightForWidth())
+        self.widthLabel.setSizePolicy(sizePolicy1)
+        self.widthLabel.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_3, 0, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.gridLayout.addWidget(self.widthLabel, 0, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.imageFromFileRB = QRadioButton(self.gridLayoutWidget)
         self.imageFromFileRB.setObjectName(u"imageFromFileRB")
@@ -113,14 +113,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.randomImageRB, 3, 0, 1, 1, Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.label_6 = QLabel(self.gridLayoutWidget)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setEnabled(False)
-        sizePolicy1.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
-        self.label_6.setSizePolicy(sizePolicy1)
-        self.label_6.setAlignment(Qt.AlignCenter)
+        self.pathImageLabel = QLabel(self.gridLayoutWidget)
+        self.pathImageLabel.setObjectName(u"pathImageLabel")
+        self.pathImageLabel.setEnabled(False)
+        sizePolicy1.setHeightForWidth(self.pathImageLabel.sizePolicy().hasHeightForWidth())
+        self.pathImageLabel.setSizePolicy(sizePolicy1)
+        self.pathImageLabel.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_6, 4, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.gridLayout.addWidget(self.pathImageLabel, 4, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.whiteImageRB = QRadioButton(self.gridLayoutWidget)
         self.whiteImageRB.setObjectName(u"whiteImageRB")
@@ -151,14 +151,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.pathLE, 5, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.label_8 = QLabel(self.gridLayoutWidget)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setEnabled(False)
-        sizePolicy1.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
-        self.label_8.setSizePolicy(sizePolicy1)
-        self.label_8.setAlignment(Qt.AlignCenter)
+        self.probabilityLabel = QLabel(self.gridLayoutWidget)
+        self.probabilityLabel.setObjectName(u"probabilityLabel")
+        self.probabilityLabel.setEnabled(False)
+        sizePolicy1.setHeightForWidth(self.probabilityLabel.sizePolicy().hasHeightForWidth())
+        self.probabilityLabel.setSizePolicy(sizePolicy1)
+        self.probabilityLabel.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_8, 2, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.gridLayout.addWidget(self.probabilityLabel, 2, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.selectFilePB = QPushButton(self.gridLayoutWidget)
         self.selectFilePB.setObjectName(u"selectFilePB")
@@ -177,13 +177,13 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.generateImagePB, 3, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
 
-        self.verticalLayout.addWidget(self.groupBox_2)
+        self.verticalLayout.addWidget(self.groupBox)
 
-        self.groupBox = QGroupBox(self.verticalLayoutWidget)
-        self.groupBox.setObjectName(u"groupBox")
-        sizePolicy1.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
-        self.groupBox.setSizePolicy(sizePolicy1)
-        self.gridLayoutWidget_2 = QWidget(self.groupBox)
+        self.groupBox_2 = QGroupBox(self.verticalLayoutWidget)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        sizePolicy1.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
+        self.groupBox_2.setSizePolicy(sizePolicy1)
+        self.gridLayoutWidget_2 = QWidget(self.groupBox_2)
         self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
         self.gridLayoutWidget_2.setGeometry(QRect(10, 20, 240, 61))
         self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
@@ -211,11 +211,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.saveImageToFileCB, 0, 0, 1, 1, Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.label_5 = QLabel(self.gridLayoutWidget_2)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setEnabled(False)
+        self.everyNIterationsLabel = QLabel(self.gridLayoutWidget_2)
+        self.everyNIterationsLabel.setObjectName(u"everyNIterationsLabel")
+        self.everyNIterationsLabel.setEnabled(False)
 
-        self.gridLayout_2.addWidget(self.label_5, 2, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.gridLayout_2.addWidget(self.everyNIterationsLabel, 2, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.saveItersSB = QSpinBox(self.gridLayoutWidget_2)
         self.saveItersSB.setObjectName(u"saveItersSB")
@@ -239,7 +239,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.everyNIterationsRB, 2, 0, 1, 1, Qt.AlignRight|Qt.AlignVCenter)
 
-        self.gridLayoutWidget_3 = QWidget(self.groupBox)
+        self.gridLayoutWidget_3 = QWidget(self.groupBox_2)
         self.gridLayoutWidget_3.setObjectName(u"gridLayoutWidget_3")
         self.gridLayoutWidget_3.setGeometry(QRect(30, 90, 321, 51))
         self.gridLayout_3 = QGridLayout(self.gridLayoutWidget_3)
@@ -281,7 +281,7 @@ class Ui_MainWindow(object):
         self.gridLayout_3.addWidget(self.selectSaveFolderPB, 1, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
 
-        self.verticalLayout.addWidget(self.groupBox)
+        self.verticalLayout.addWidget(self.groupBox_2)
 
         self.groupBox_3 = QGroupBox(self.verticalLayoutWidget)
         self.groupBox_3.setObjectName(u"groupBox_3")
@@ -291,13 +291,13 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.label = QLabel(self.verticalLayoutWidget_2)
-        self.label.setObjectName(u"label")
-        sizePolicy1.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy1)
-        self.label.setAlignment(Qt.AlignCenter)
+        self.numOfItersLabel = QLabel(self.verticalLayoutWidget_2)
+        self.numOfItersLabel.setObjectName(u"numOfItersLabel")
+        sizePolicy1.setHeightForWidth(self.numOfItersLabel.sizePolicy().hasHeightForWidth())
+        self.numOfItersLabel.setSizePolicy(sizePolicy1)
+        self.numOfItersLabel.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_2.addWidget(self.label, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.verticalLayout_2.addWidget(self.numOfItersLabel, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.numOfItersSB = QSpinBox(self.verticalLayoutWidget_2)
         self.numOfItersSB.setObjectName(u"numOfItersSB")
@@ -341,20 +341,20 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Langton's Ant", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Image", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Height", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Width", None))
+        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Image", None))
+        self.heightLabel.setText(QCoreApplication.translate("MainWindow", u"Height", None))
+        self.widthLabel.setText(QCoreApplication.translate("MainWindow", u"Width", None))
         self.imageFromFileRB.setText(QCoreApplication.translate("MainWindow", u"Image from file", None))
         self.randomImageRB.setText(QCoreApplication.translate("MainWindow", u"Random image", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Path to image", None))
+        self.pathImageLabel.setText(QCoreApplication.translate("MainWindow", u"Path to image", None))
         self.whiteImageRB.setText(QCoreApplication.translate("MainWindow", u"White image", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Probability of black pixels", None))
+        self.probabilityLabel.setText(QCoreApplication.translate("MainWindow", u"Probability of black pixels", None))
         self.selectFilePB.setText(QCoreApplication.translate("MainWindow", u"Select file", None))
         self.generateImagePB.setText(QCoreApplication.translate("MainWindow", u"Generate image", None))
-        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Output", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Output", None))
         self.allIterationsRB.setText(QCoreApplication.translate("MainWindow", u"All iterations", None))
         self.saveImageToFileCB.setText(QCoreApplication.translate("MainWindow", u"Save images to files", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"iterations", None))
+        self.everyNIterationsLabel.setText(QCoreApplication.translate("MainWindow", u"iterations", None))
         self.everyNIterationsRB.setText(QCoreApplication.translate("MainWindow", u"Every          ", None))
         self.defaultSavePathCB.setText(QCoreApplication.translate("MainWindow", u"Default save path", None))
         self.saveFilePathLE.setText(QCoreApplication.translate("MainWindow", u"out/", None))
@@ -363,7 +363,7 @@ class Ui_MainWindow(object):
         self.defaultFileNameCB.setText(QCoreApplication.translate("MainWindow", u"Default file name", None))
         self.selectSaveFolderPB.setText(QCoreApplication.translate("MainWindow", u"Select folder", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Algorithm", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Number of iterations", None))
+        self.numOfItersLabel.setText(QCoreApplication.translate("MainWindow", u"Number of iterations", None))
         self.resetPB.setText(QCoreApplication.translate("MainWindow", u"RESET", None))
         self.runPB.setText(QCoreApplication.translate("MainWindow", u"RUN", None))
     # retranslateUi

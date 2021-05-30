@@ -21,8 +21,8 @@ class MainWindow(QMainWindow):
 
     def _connectWithGUI(self):
         self.ui.whiteImageRB.clicked.connect(self._whiteImageClick)
-        self.ui.imageFromFileRB.clicked.connect(self._imageFromFileClick)
         self.ui.randomImageRB.clicked.connect(self._randomImageClick)
+        self.ui.imageFromFileRB.clicked.connect(self._imageFromFileClick)
 
         self.ui.saveImageToFileCB.clicked.connect(self._saveImageToFileClick)
         self.ui.allIterationsRB.clicked.connect(self._allIterationsClick)
@@ -37,16 +37,19 @@ class MainWindow(QMainWindow):
         self.ui.runPB.clicked.connect(self._runClick)
 
     def _whiteImageClick(self):
-        self._setImageGroupEnabled((True, True, False, False, False, True))
+        self._setImageGroupEnabled((True, True, True, True, False,
+                                    False, False, False, False, True))
+        self._checkIfRunButtonCanBeEnabled()
+
+    def _randomImageClick(self):
+        self._setImageGroupEnabled((True, True, True, True, True,
+                                    True, False, False, False, True))
         self._checkIfRunButtonCanBeEnabled()
 
     def _imageFromFileClick(self):
-        self._setImageGroupEnabled((False, False, True, False, True, False))
+        self._setImageGroupEnabled((False, False, False, False, False,
+                                    False, True, True, True, False))
         self._checkIfPathIsEmpty()
-
-    def _randomImageClick(self):
-        self._setImageGroupEnabled((True, True, False, True, False, True))
-        self._checkIfRunButtonCanBeEnabled()
 
     def _saveImageToFileClick(self):
         if(self.ui.saveImageToFileCB.isChecked()):
@@ -54,6 +57,7 @@ class MainWindow(QMainWindow):
 
             if(self.ui.everyNIterationsRB.isChecked()):
                 self.ui.saveItersSB.setEnabled(True)
+                self.ui.everyNIterationsLabel.setEnabled(True)
 
             self._defaultFileNameClick()
             self._defaultSavePathClick()
@@ -61,15 +65,18 @@ class MainWindow(QMainWindow):
             self._setOutputGroupEnabled(False)
 
             self.ui.saveItersSB.setEnabled(False)
+            self.ui.everyNIterationsLabel.setEnabled(False)
             self.ui.saveFileNameLE.setEnabled(False)
             self.ui.saveFilePathLE.setEnabled(False)
             self.ui.selectSaveFolderPB.setEnabled(False)
 
     def _allIterationsClick(self):
         self.ui.saveItersSB.setEnabled(False)
+        self.ui.everyNIterationsLabel.setEnabled(False)
 
     def _everyNIterationsClick(self):
         self.ui.saveItersSB.setEnabled(True)
+        self.ui.everyNIterationsLabel.setEnabled(True)
 
     def _defaultFileNameClick(self):
         if(self.ui.defaultFileNameCB.isChecked()):
@@ -91,14 +98,14 @@ class MainWindow(QMainWindow):
         dialog = QFileDialog(self)
         dirPath = dialog.getExistingDirectory(caption="Select Directory",
                                               options=dialog.ShowDirsOnly)
-        if(dir != ''):
+        if(dirPath != ''):
             self.ui.saveFilePathLE.setText(dirPath + '/')
 
     def _selectFileClick(self):
         dialog = QFileDialog(self)
         filePath = dialog.getOpenFileName(caption="Select Image",
                                           filter=SUPPORTED_FILE_TYPES)[0]
-        if(path != ''):
+        if(filePath != ''):
             self.ui.pathLE.setText(filePath)
 
         self._checkIfPathIsEmpty()
@@ -165,10 +172,17 @@ class MainWindow(QMainWindow):
     def _setImageGroupEnabled(self, isEnabled):
         self.ui.widthSB.setEnabled(isEnabled[0])
         self.ui.heightSB.setEnabled(isEnabled[1])
-        self.ui.pathLE.setEnabled(isEnabled[2])
-        self.ui.probabilitySB.setEnabled(isEnabled[3])
-        self.ui.selectFilePB.setEnabled(isEnabled[4])
-        self.ui.generateImagePB.setEnabled(isEnabled[5])
+        self.ui.widthLabel.setEnabled(isEnabled[2])
+        self.ui.heightLabel.setEnabled(isEnabled[3])
+
+        self.ui.probabilitySB.setEnabled(isEnabled[4])
+        self.ui.probabilityLabel.setEnabled(isEnabled[5])
+
+        self.ui.pathLE.setEnabled(isEnabled[6])
+        self.ui.selectFilePB.setEnabled(isEnabled[7])
+        self.ui.pathImageLabel.setEnabled(isEnabled[8])
+
+        self.ui.generateImagePB.setEnabled(isEnabled[9])
 
     def _setOutputGroupEnabled(self, isEnabled):
         self.ui.allIterationsRB.setEnabled(isEnabled)
