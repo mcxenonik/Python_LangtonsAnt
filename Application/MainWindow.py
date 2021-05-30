@@ -53,30 +53,26 @@ class MainWindow(QMainWindow):
 
     def _saveImageToFileClick(self):
         if(self.ui.saveImageToFileCB.isChecked()):
-            self._setOutputGroupEnabled(True)
+            self._setOutputGroupEnabled((True, True, False, False,
+                                         True, True, False, False,
+                                         False))
 
-            if(self.ui.everyNIterationsRB.isChecked()):
-                self.ui.saveItersSB.setEnabled(True)
-                self.ui.everyNIterationsLabel.setEnabled(True)
-
+            self._everyNIterationsClick()
             self._defaultFileNameClick()
             self._defaultSavePathClick()
         else:
-            self._setOutputGroupEnabled(False)
-
-            self.ui.saveItersSB.setEnabled(False)
-            self.ui.everyNIterationsLabel.setEnabled(False)
-            self.ui.saveFileNameLE.setEnabled(False)
-            self.ui.saveFilePathLE.setEnabled(False)
-            self.ui.selectSaveFolderPB.setEnabled(False)
+            self._setOutputGroupEnabled((False, False, False, False,
+                                         False, False, False, False,
+                                         False))
 
     def _allIterationsClick(self):
         self.ui.saveItersSB.setEnabled(False)
         self.ui.everyNIterationsLabel.setEnabled(False)
 
     def _everyNIterationsClick(self):
-        self.ui.saveItersSB.setEnabled(True)
-        self.ui.everyNIterationsLabel.setEnabled(True)
+        if(self.ui.everyNIterationsRB.isChecked()):
+            self.ui.saveItersSB.setEnabled(True)
+            self.ui.everyNIterationsLabel.setEnabled(True)
 
     def _defaultFileNameClick(self):
         if(self.ui.defaultFileNameCB.isChecked()):
@@ -185,10 +181,16 @@ class MainWindow(QMainWindow):
         self.ui.generateImagePB.setEnabled(isEnabled[9])
 
     def _setOutputGroupEnabled(self, isEnabled):
-        self.ui.allIterationsRB.setEnabled(isEnabled)
-        self.ui.everyNIterationsRB.setEnabled(isEnabled)
-        self.ui.defaultFileNameCB.setEnabled(isEnabled)
-        self.ui.defaultSavePathCB.setEnabled(isEnabled)
+        self.ui.allIterationsRB.setEnabled(isEnabled[0])
+        self.ui.everyNIterationsRB.setEnabled(isEnabled[1])
+        self.ui.saveItersSB.setEnabled(isEnabled[2])
+        self.ui.everyNIterationsLabel.setEnabled(isEnabled[3])
+
+        self.ui.defaultFileNameCB.setEnabled(isEnabled[4])
+        self.ui.defaultSavePathCB.setEnabled(isEnabled[5])
+        self.ui.saveFileNameLE.setEnabled(isEnabled[6])
+        self.ui.saveFilePathLE.setEnabled(isEnabled[7])
+        self.ui.selectSaveFolderPB.setEnabled(isEnabled[8])
 
     def _checkIfPathIsEmpty(self):
         if(self.ui.pathLE.text() == ''):
