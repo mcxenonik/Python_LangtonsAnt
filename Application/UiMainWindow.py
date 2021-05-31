@@ -32,7 +32,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(0, 0, 361, 521))
+        self.verticalLayoutWidget.setGeometry(QRect(0, 0, 361, 471))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -44,15 +44,13 @@ class Ui_MainWindow(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
         self.groupBox.setSizePolicy(sizePolicy1)
-        self.gridLayoutWidget = QWidget(self.groupBox)
-        self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 10, 341, 161))
-        self.gridLayout = QGridLayout(self.gridLayoutWidget)
+        self.verticalLayout_3 = QVBoxLayout(self.groupBox)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.gridLayout = QGridLayout()
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.probabilitySB = QDoubleSpinBox(self.gridLayoutWidget)
+        self.probabilitySB = QDoubleSpinBox(self.groupBox)
         self.probabilitySB.setObjectName(u"probabilitySB")
         self.probabilitySB.setEnabled(False)
         sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
@@ -68,7 +66,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.probabilitySB, 3, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.heightLabel = QLabel(self.gridLayoutWidget)
+        self.heightLabel = QLabel(self.groupBox)
         self.heightLabel.setObjectName(u"heightLabel")
         sizePolicy1.setHeightForWidth(self.heightLabel.sizePolicy().hasHeightForWidth())
         self.heightLabel.setSizePolicy(sizePolicy1)
@@ -76,7 +74,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.heightLabel, 0, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.widthLabel = QLabel(self.gridLayoutWidget)
+        self.widthLabel = QLabel(self.groupBox)
         self.widthLabel.setObjectName(u"widthLabel")
         sizePolicy1.setHeightForWidth(self.widthLabel.sizePolicy().hasHeightForWidth())
         self.widthLabel.setSizePolicy(sizePolicy1)
@@ -84,14 +82,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.widthLabel, 0, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.imageFromFileRB = QRadioButton(self.gridLayoutWidget)
+        self.imageFromFileRB = QRadioButton(self.groupBox)
         self.imageFromFileRB.setObjectName(u"imageFromFileRB")
         sizePolicy2.setHeightForWidth(self.imageFromFileRB.sizePolicy().hasHeightForWidth())
         self.imageFromFileRB.setSizePolicy(sizePolicy2)
 
         self.gridLayout.addWidget(self.imageFromFileRB, 5, 0, 1, 1, Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.widthSB = QSpinBox(self.gridLayoutWidget)
+        self.widthSB = QSpinBox(self.groupBox)
         self.widthSB.setObjectName(u"widthSB")
         sizePolicy2.setHeightForWidth(self.widthSB.sizePolicy().hasHeightForWidth())
         self.widthSB.setSizePolicy(sizePolicy2)
@@ -106,14 +104,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.widthSB, 1, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.randomImageRB = QRadioButton(self.gridLayoutWidget)
+        self.randomImageRB = QRadioButton(self.groupBox)
         self.randomImageRB.setObjectName(u"randomImageRB")
         sizePolicy2.setHeightForWidth(self.randomImageRB.sizePolicy().hasHeightForWidth())
         self.randomImageRB.setSizePolicy(sizePolicy2)
 
         self.gridLayout.addWidget(self.randomImageRB, 3, 0, 1, 1, Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.pathImageLabel = QLabel(self.gridLayoutWidget)
+        self.pathImageLabel = QLabel(self.groupBox)
         self.pathImageLabel.setObjectName(u"pathImageLabel")
         self.pathImageLabel.setEnabled(False)
         sizePolicy1.setHeightForWidth(self.pathImageLabel.sizePolicy().hasHeightForWidth())
@@ -122,7 +120,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.pathImageLabel, 4, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.whiteImageRB = QRadioButton(self.gridLayoutWidget)
+        self.whiteImageRB = QRadioButton(self.groupBox)
         self.whiteImageRB.setObjectName(u"whiteImageRB")
         sizePolicy2.setHeightForWidth(self.whiteImageRB.sizePolicy().hasHeightForWidth())
         self.whiteImageRB.setSizePolicy(sizePolicy2)
@@ -130,7 +128,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.whiteImageRB, 1, 0, 1, 1, Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.heightSB = QSpinBox(self.gridLayoutWidget)
+        self.heightSB = QSpinBox(self.groupBox)
         self.heightSB.setObjectName(u"heightSB")
         sizePolicy2.setHeightForWidth(self.heightSB.sizePolicy().hasHeightForWidth())
         self.heightSB.setSizePolicy(sizePolicy2)
@@ -142,7 +140,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.heightSB, 1, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.pathLE = QLineEdit(self.gridLayoutWidget)
+        self.pathLE = QLineEdit(self.groupBox)
         self.pathLE.setObjectName(u"pathLE")
         self.pathLE.setEnabled(False)
         sizePolicy1.setHeightForWidth(self.pathLE.sizePolicy().hasHeightForWidth())
@@ -151,7 +149,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.pathLE, 5, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.probabilityLabel = QLabel(self.gridLayoutWidget)
+        self.probabilityLabel = QLabel(self.groupBox)
         self.probabilityLabel.setObjectName(u"probabilityLabel")
         self.probabilityLabel.setEnabled(False)
         sizePolicy1.setHeightForWidth(self.probabilityLabel.sizePolicy().hasHeightForWidth())
@@ -160,7 +158,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.probabilityLabel, 2, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.selectFilePB = QPushButton(self.gridLayoutWidget)
+        self.selectFilePB = QPushButton(self.groupBox)
         self.selectFilePB.setObjectName(u"selectFilePB")
         self.selectFilePB.setEnabled(False)
         sizePolicy1.setHeightForWidth(self.selectFilePB.sizePolicy().hasHeightForWidth())
@@ -169,12 +167,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.selectFilePB, 5, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.generateImagePB = QPushButton(self.gridLayoutWidget)
+        self.generateImagePB = QPushButton(self.groupBox)
         self.generateImagePB.setObjectName(u"generateImagePB")
         sizePolicy1.setHeightForWidth(self.generateImagePB.sizePolicy().hasHeightForWidth())
         self.generateImagePB.setSizePolicy(sizePolicy1)
 
         self.gridLayout.addWidget(self.generateImagePB, 3, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
+
+
+        self.verticalLayout_3.addLayout(self.gridLayout)
 
 
         self.verticalLayout.addWidget(self.groupBox)
@@ -183,15 +184,13 @@ class Ui_MainWindow(object):
         self.groupBox_2.setObjectName(u"groupBox_2")
         sizePolicy1.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
         self.groupBox_2.setSizePolicy(sizePolicy1)
-        self.gridLayoutWidget_2 = QWidget(self.groupBox_2)
-        self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
-        self.gridLayoutWidget_2.setGeometry(QRect(10, 20, 240, 61))
-        self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
+        self.verticalLayout_4 = QVBoxLayout(self.groupBox_2)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setHorizontalSpacing(3)
         self.gridLayout_2.setVerticalSpacing(0)
-        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.allIterationsRB = QRadioButton(self.gridLayoutWidget_2)
+        self.allIterationsRB = QRadioButton(self.groupBox_2)
         self.allIterationsRB.setObjectName(u"allIterationsRB")
         self.allIterationsRB.setEnabled(False)
         sizePolicy3 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
@@ -203,7 +202,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.allIterationsRB, 1, 0, 1, 1, Qt.AlignRight|Qt.AlignVCenter)
 
-        self.saveImageToFileCB = QCheckBox(self.gridLayoutWidget_2)
+        self.saveImageToFileCB = QCheckBox(self.groupBox_2)
         self.saveImageToFileCB.setObjectName(u"saveImageToFileCB")
         sizePolicy3.setHeightForWidth(self.saveImageToFileCB.sizePolicy().hasHeightForWidth())
         self.saveImageToFileCB.setSizePolicy(sizePolicy3)
@@ -211,13 +210,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.saveImageToFileCB, 0, 0, 1, 1, Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.everyNIterationsLabel = QLabel(self.gridLayoutWidget_2)
+        self.everyNIterationsLabel = QLabel(self.groupBox_2)
         self.everyNIterationsLabel.setObjectName(u"everyNIterationsLabel")
         self.everyNIterationsLabel.setEnabled(False)
 
-        self.gridLayout_2.addWidget(self.everyNIterationsLabel, 2, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.gridLayout_2.addWidget(self.everyNIterationsLabel, 2, 2, 1, 1, Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.saveItersSB = QSpinBox(self.gridLayoutWidget_2)
+        self.saveItersSB = QSpinBox(self.groupBox_2)
         self.saveItersSB.setObjectName(u"saveItersSB")
         self.saveItersSB.setEnabled(False)
         sizePolicy4 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
@@ -233,65 +232,65 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.saveItersSB, 2, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.everyNIterationsRB = QRadioButton(self.gridLayoutWidget_2)
+        self.everyNIterationsRB = QRadioButton(self.groupBox_2)
         self.everyNIterationsRB.setObjectName(u"everyNIterationsRB")
         self.everyNIterationsRB.setEnabled(False)
 
         self.gridLayout_2.addWidget(self.everyNIterationsRB, 2, 0, 1, 1, Qt.AlignRight|Qt.AlignVCenter)
 
-        self.gridLayoutWidget_3 = QWidget(self.groupBox_2)
-        self.gridLayoutWidget_3.setObjectName(u"gridLayoutWidget_3")
-        self.gridLayoutWidget_3.setGeometry(QRect(30, 90, 321, 51))
-        self.gridLayout_3 = QGridLayout(self.gridLayoutWidget_3)
+
+        self.verticalLayout_4.addLayout(self.gridLayout_2)
+
+        self.gridLayout_3 = QGridLayout()
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setHorizontalSpacing(3)
         self.gridLayout_3.setVerticalSpacing(0)
-        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.defaultSavePathCB = QCheckBox(self.gridLayoutWidget_3)
+        self.defaultSavePathCB = QCheckBox(self.groupBox_2)
         self.defaultSavePathCB.setObjectName(u"defaultSavePathCB")
         self.defaultSavePathCB.setEnabled(False)
         self.defaultSavePathCB.setChecked(True)
 
         self.gridLayout_3.addWidget(self.defaultSavePathCB, 1, 0, 1, 1, Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.saveFilePathLE = QLineEdit(self.gridLayoutWidget_3)
+        self.saveFilePathLE = QLineEdit(self.groupBox_2)
         self.saveFilePathLE.setObjectName(u"saveFilePathLE")
         self.saveFilePathLE.setEnabled(False)
         self.saveFilePathLE.setReadOnly(True)
 
         self.gridLayout_3.addWidget(self.saveFilePathLE, 1, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.saveFileNameLE = QLineEdit(self.gridLayoutWidget_3)
+        self.saveFileNameLE = QLineEdit(self.groupBox_2)
         self.saveFileNameLE.setObjectName(u"saveFileNameLE")
         self.saveFileNameLE.setEnabled(False)
 
         self.gridLayout_3.addWidget(self.saveFileNameLE, 0, 1, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.defaultFileNameCB = QCheckBox(self.gridLayoutWidget_3)
+        self.defaultFileNameCB = QCheckBox(self.groupBox_2)
         self.defaultFileNameCB.setObjectName(u"defaultFileNameCB")
         self.defaultFileNameCB.setEnabled(False)
         self.defaultFileNameCB.setChecked(True)
 
         self.gridLayout_3.addWidget(self.defaultFileNameCB, 0, 0, 1, 1, Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.selectSaveFolderPB = QPushButton(self.gridLayoutWidget_3)
+        self.selectSaveFolderPB = QPushButton(self.groupBox_2)
         self.selectSaveFolderPB.setObjectName(u"selectSaveFolderPB")
         self.selectSaveFolderPB.setEnabled(False)
 
         self.gridLayout_3.addWidget(self.selectSaveFolderPB, 1, 2, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
 
+        self.verticalLayout_4.addLayout(self.gridLayout_3)
+
+
         self.verticalLayout.addWidget(self.groupBox_2)
 
         self.groupBox_3 = QGroupBox(self.verticalLayoutWidget)
         self.groupBox_3.setObjectName(u"groupBox_3")
-        self.verticalLayoutWidget_2 = QWidget(self.groupBox_3)
-        self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(10, 20, 100, 51))
-        self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_5 = QVBoxLayout(self.groupBox_3)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.numOfItersLabel = QLabel(self.verticalLayoutWidget_2)
+        self.numOfItersLabel = QLabel(self.groupBox_3)
         self.numOfItersLabel.setObjectName(u"numOfItersLabel")
         sizePolicy1.setHeightForWidth(self.numOfItersLabel.sizePolicy().hasHeightForWidth())
         self.numOfItersLabel.setSizePolicy(sizePolicy1)
@@ -299,7 +298,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.numOfItersLabel, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.numOfItersSB = QSpinBox(self.verticalLayoutWidget_2)
+        self.numOfItersSB = QSpinBox(self.groupBox_3)
         self.numOfItersSB.setObjectName(u"numOfItersSB")
         sizePolicy1.setHeightForWidth(self.numOfItersSB.sizePolicy().hasHeightForWidth())
         self.numOfItersSB.setSizePolicy(sizePolicy1)
@@ -311,23 +310,25 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.numOfItersSB, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.horizontalLayoutWidget = QWidget(self.groupBox_3)
-        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(10, 80, 161, 31))
-        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
+
+        self.verticalLayout_5.addLayout(self.verticalLayout_2)
+
+        self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.resetPB = QPushButton(self.horizontalLayoutWidget)
+        self.resetPB = QPushButton(self.groupBox_3)
         self.resetPB.setObjectName(u"resetPB")
         self.resetPB.setEnabled(False)
 
         self.horizontalLayout.addWidget(self.resetPB, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
-        self.runPB = QPushButton(self.horizontalLayoutWidget)
+        self.runPB = QPushButton(self.groupBox_3)
         self.runPB.setObjectName(u"runPB")
         self.runPB.setEnabled(False)
 
         self.horizontalLayout.addWidget(self.runPB, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+
+        self.verticalLayout_5.addLayout(self.horizontalLayout)
 
 
         self.verticalLayout.addWidget(self.groupBox_3)
