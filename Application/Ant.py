@@ -41,11 +41,11 @@ class Ant():
         old_y = self._position_y
         old_x = self._position_x
 
-        self.move_v2()
+        self.change_position()
 
         self._random_move(old_y, old_x)
 
-    def move_v2(self):
+    def change_position(self):
         if(self._direction == 0):
             self._position_y -= 1
         elif(self._direction == 90):
@@ -67,4 +67,4 @@ class Ant():
 
             self._direction = choice(directions)
             directions.remove(self._direction)
-            self.move_v2()
+            self.change_position()
