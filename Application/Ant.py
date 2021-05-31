@@ -25,44 +25,6 @@ class Ant():
 
         return board
 
-    def move(self):
-        max_y = self._max_position_y
-        max_x = self._max_position_x
-        old_y = self._position_y
-        old_x = self._position_x
-
-        if(self._direction == 0):
-            self._position_y -= 1
-        elif(self._direction == 90):
-            self._position_x += 1
-        elif(self._direction == 180):
-            self._position_y += 1
-        elif(self._direction == 270):
-            self._position_x -= 1
-
-        # if(self._position_y < 0 or self._position_x < 0
-        #    or self._position_y > max_y or self._position_x > max_x):
-        #     self._position_y = old_y
-        #     self._position_x = old_x
-
-        #     self._random_move()
-        while(self._position_y < 0 or self._position_x < 0
-              or self._position_y > max_y or self._position_x > max_x):
-            self._position_y = old_y
-            self._position_x = old_x
-
-            self._random_move()
-
-    def move_v2(self):
-        if(self._direction == 0):
-            self._position_y -= 1
-        elif(self._direction == 90):
-            self._position_x += 1
-        elif(self._direction == 180):
-            self._position_y += 1
-        elif(self._direction == 270):
-            self._position_x -= 1
-
     def rotate_right(self):
         self._direction += 90
 
@@ -75,29 +37,34 @@ class Ant():
         if(self._direction < 0):
             self._direction = 270
 
-    def _random_move(self):
-        # y = self._position_y
-        # x = self._position_x
-        # max_y = self._max_position_y
-        # max_x = self._max_position_x
+    def move(self):
+        old_y = self._position_y
+        old_x = self._position_x
 
-        # if(y == 0 and x == 0):
-        #     directions = [90, 180]
-        # elif(y == 0 and x == max_x):
-        #     directions = [180, 270]
-        # elif(y == max_y and x == 0):
-        #     directions = [0, 90]
-        # elif(y == max_y and x == max_x):
-        #     directions = [0, 270]
-        # elif(y == 0):
-        #     directions = [90, 180, 270]
-        # elif(y == max_y):
-        #     directions = [0, 90, 270]
-        # elif(x == 0):
-        #     directions = [0, 90, 180]
-        # elif(x == max_x):
-        #     directions = [0, 180, 270]
+        self.move_v2()
+
+        self._random_move(old_y, old_x)
+
+    def move_v2(self):
+        if(self._direction == 0):
+            self._position_y -= 1
+        elif(self._direction == 90):
+            self._position_x += 1
+        elif(self._direction == 180):
+            self._position_y += 1
+        elif(self._direction == 270):
+            self._position_x -= 1
+
+    def _random_move(self, old_y, old_x):
+        max_y = self._max_position_y
+        max_x = self._max_position_x
         directions = [0, 90, 180, 270]
 
-        self._direction = choice(directions)
-        self.move_v2()
+        while(self._position_y < 0 or self._position_x < 0
+              or self._position_y > max_y or self._position_x > max_x):
+            self._position_y = old_y
+            self._position_x = old_x
+
+            self._direction = choice(directions)
+            directions.remove(self._direction)
+            self.move_v2()
