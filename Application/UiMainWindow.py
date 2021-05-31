@@ -357,7 +357,7 @@ class Ui_MainWindow(object):
         self.everyNIterationsLabel.setText(QCoreApplication.translate("MainWindow", u"iterations", None))
         self.everyNIterationsRB.setText(QCoreApplication.translate("MainWindow", u"Every          ", None))
         self.defaultSavePathCB.setText(QCoreApplication.translate("MainWindow", u"Default save path", None))
-        self.saveFilePathLE.setText(QCoreApplication.translate("MainWindow", u"out/", None))
+        self.saveFilePathLE.setText(QCoreApplication.translate("MainWindow", u"out", None))
         self.saveFileNameLE.setInputMask(QCoreApplication.translate("MainWindow", u"NNNNNNNNNN", None))
         self.saveFileNameLE.setText(QCoreApplication.translate("MainWindow", u"outImage", None))
         self.defaultFileNameCB.setText(QCoreApplication.translate("MainWindow", u"Default file name", None))

@@ -95,7 +95,7 @@ class MainWindow(QMainWindow):
         dirPath = dialog.getExistingDirectory(caption="Select Directory",
                                               options=dialog.ShowDirsOnly)
         if(dirPath != ''):
-            self.ui.saveFilePathLE.setText(dirPath + '/')
+            self.ui.saveFilePathLE.setText(dirPath)
 
     def _selectFileClick(self):
         dialog = QFileDialog(self)
@@ -212,13 +212,12 @@ class MainWindow(QMainWindow):
 
     def _saveImageToFile(self, image, numOfIter):
         savePath = self.ui.saveFilePathLE.text()
-        fileName = self.ui.saveFileNameLE.text()
-        iter = f'_{numOfIter}.png'
+        fileName = self.ui.saveFileNameLE.text() + f'_{numOfIter}.png'
 
         if(not(path.exists(savePath))):
             makedirs(savePath)
 
-        fullSavePath = savePath + fileName + iter
+        fullSavePath = path.join(savePath, fileName)
         imwrite(fullSavePath, image)
 
     def _runAlgorithm(self, numOfIters, isSave=False, saveIters=1):
