@@ -39,17 +39,18 @@ class MainWindow(QMainWindow):
     def _whiteImageClick(self):
         self._setImageGroupEnabled((True, True, True, True, False,
                                     False, False, False, False, True))
-        self._checkIfRunButtonCanBeEnabled()
+        self._checkIfRunAndResetButtonCanBeEnabled()
 
     def _randomImageClick(self):
         self._setImageGroupEnabled((True, True, True, True, True,
                                     True, False, False, False, True))
-        self._checkIfRunButtonCanBeEnabled()
+        self._checkIfRunAndResetButtonCanBeEnabled()
 
     def _imageFromFileClick(self):
         self._setImageGroupEnabled((False, False, False, False, False,
                                     False, True, True, True, False))
-        self._checkIfPathIsEmpty()
+        self._checkIfGeneratImageButtonCanBeEnabled()
+        self._checkIfRunAndResetButtonCanBeEnabled()
 
     def _saveImageToFileClick(self):
         if(self.ui.saveImageToFileCB.isChecked()):
@@ -104,7 +105,7 @@ class MainWindow(QMainWindow):
         if(filePath != ''):
             self.ui.pathLE.setText(filePath)
 
-        self._checkIfPathIsEmpty()
+        self._checkIfGeneratImageButtonCanBeEnabled()
 
     def _generateImageClick(self):
         print('Image generated')
@@ -127,7 +128,7 @@ class MainWindow(QMainWindow):
 
             self._antAlgorithm.generate_random_image(height, width, proba)
 
-        self._setPushButtonsEnabled()
+        self._checkIfRunAndResetButtonCanBeEnabled()
 
         self._antAlgorithm.copy_image_to_reset()
 
@@ -161,10 +162,6 @@ class MainWindow(QMainWindow):
 
         self._showImage()
 
-    def _setPushButtonsEnabled(self):
-        self.ui.resetPB.setEnabled(True)
-        self.ui.runPB.setEnabled(True)
-
     def _setImageGroupEnabled(self, isEnabled):
         self.ui.widthSB.setEnabled(isEnabled[0])
         self.ui.heightSB.setEnabled(isEnabled[1])
@@ -192,17 +189,18 @@ class MainWindow(QMainWindow):
         self.ui.saveFilePathLE.setEnabled(isEnabled[7])
         self.ui.selectSaveFolderPB.setEnabled(isEnabled[8])
 
-    def _checkIfPathIsEmpty(self):
+    def _checkIfGeneratImageButtonCanBeEnabled(self):
         if(self.ui.pathLE.text() == ''):
-            self.ui.runPB.setEnabled(False)
             self.ui.generateImagePB.setEnabled(False)
         else:
             self.ui.generateImagePB.setEnabled(True)
 
-    def _checkIfRunButtonCanBeEnabled(self):
+    def _checkIfRunAndResetButtonCanBeEnabled(self):
         if(self._antAlgorithm.is_image_genarated()):
+            self.ui.resetPB.setEnabled(True)
             self.ui.runPB.setEnabled(True)
         else:
+            self.ui.resetPB.setEnabled(False)
             self.ui.runPB.setEnabled(False)
 
     def _showImage(self):
