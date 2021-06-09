@@ -108,7 +108,7 @@ class MainWindow(QMainWindow):
         self._checkIfGeneratImageButtonCanBeEnabled()
 
     def _generateImageClick(self):
-        print('Image generated')
+        # print('Image generated')
 
         if(self.ui.whiteImageRB.isChecked()):
             height = self.ui.heightSB.value()
@@ -135,14 +135,14 @@ class MainWindow(QMainWindow):
         self._showImage()
 
     def _resetClick(self):
-        print('RESET')
+        # print('RESET')
 
         self._antAlgorithm.copy_image_from_reset()
 
         self._showImage()
 
     def _runClick(self):
-        print('RUN')
+        # print('RUN')
 
         isSave = self.ui.saveImageToFileCB.isChecked()
         allIters = self.ui.allIterationsRB.isChecked()
