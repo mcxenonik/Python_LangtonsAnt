@@ -4,6 +4,8 @@ Implementacja prostego automatu komórkowego, tzw. Mrówki Langtona
 oraz interfejsu, za pomocą którego użytkownik mógłby modyfikować parametry tego automatu z 
 wykorzystaniem języka Python.
 
+![example_images](https://user-images.githubusercontent.com/80826566/160601127-484d3bcf-4595-46a3-8bd7-0aa579ec23e7.png)
+
 # Instrukcja Obsługi
 
 Program uruchamiany jest poleceniem "python RunApplication.py"
